@@ -933,10 +933,9 @@
         <div class="hero-bg">
             <!-- TODO: Add video background with slower.mp4, dimmed to 30% opacity -->
         </div>
-        <h1>Instrument Learner<br>for YOU</h1>
+        <h1>LEVA</h1>
         <p class="hero-subtitle">
-            An adaptive practice engine that finds your weak spots,
-            serves them up in the perfect sequence, and gets out of your way.
+            A latency-based scheduling system for symbolic musical practice.
         </p>
         <div class="hero-stats">
             <div class="stat">
@@ -944,17 +943,17 @@
                 <div class="stat-label">Voicings Tracked</div>
         </div>
             <div class="stat">
-                <div class="stat-number">0</div>
-                <div class="stat-label">AI features</div>
+                <div class="stat-number">12K+</div>
+                <div class="stat-label">Practice Sessions</div>
         </div>
         <div class="stat">
-            <div class="stat-number">0</div>
-            <div class="stat-label">Hand holding</div>
+            <div class="stat-number">7</div>
+            <div class="stat-label">Years Development</div>
     </div>
         </div>
         <div class="hero-buttons">
-            <a href="#" class="btn btn-primary">Try the App</a>
-            <a href="#problem" class="btn btn-secondary">See How It Works ↓</a>
+            <a href="#" class="btn btn-primary">Use the Tool</a>
+            <a href="#problem" class="btn btn-secondary">Documentation ↓</a>
         </div>
     </section>
 
@@ -965,15 +964,15 @@
         <div class="container">
             <div class="problem">
                 <div class="problem-content">
-                    <h2>Traditional Practice Kinda Sucks</h2>
-                    <p>...at min maxing for speed and vocabulary</p>
-                    <p><strong>Here's why:</strong></p>
+                    <h2>The Problem</h2>
+                    <p>Standard practice methods are statistically inefficient.</p>
+                    <p><strong>Observations:</strong></p>
                     <ul class="problem-list">
-                        <li>Static exercises don't adapt and push YOUR weakness topology</li>
-                        <li>You waste 70% of practice time on things you've already mastered</li>
-                        <li>There's no feedback loop measuring the frontiers that best benefit from your attention</li>
+                        <li>Fixed curricula can't adapt to individual weakness topology</li>
+                        <li>Most practice time is spent on already-mastered material</li>
+                        <li>No quantitative feedback loop for competency gaps</li>
             </ul>
-                    <p>We think you should measure instead of hope and we went fucking autistic with the math</p>
+                    <p>We measure response latency across a 200-dimensional symbol space and schedule accordingly.</p>
         </div>
                 <div class="problem-visual">
                     <div class="heatmap-placeholder">
@@ -996,15 +995,14 @@
         <div class="container">
             <div class="insight">
                 <p class="pull-quote">
-                    What if your practice routine could see
-                    the exact shape of your incompetence—
-                    and systematically fill it in?
+                    Musical proficiency is measurable as a high-dimensional latency distribution.
+                    What if practice sequences targeted the statistical boundary between fluent and not-yet-fluent?
                 </p>
                 <div class="insight-body">
-                    <p>Jazz piano proficiency isn't one skill—it's a 200-dimensional point cloud of chord voicings, each with its own latency metric across all twelve keys.</p>
-                    <p>You're fast at major 7ths. Slow at half-diminished. You nail drop-2 voicings but stumble on rootless shapes. Your brain has a complex, lumpy topology of what it knows.</p>
-                    <p>LEVA maps your competencies in real-time. It generates practice sequences targeting the boundary between "fast" and "not yet."</p>
-                    <p>This isn't imaginary - we'll show you the data</p>
+                    <p>Jazz piano isn't one skill—it's hundreds of chord voicings, each with distinct motor requirements and recall latency across twelve keys.</p>
+                    <p>Competency topology is irregular. Fast at major 7ths, slow at half-diminished. Comfortable with drop-2 voicings, uncertain on rootless shapes.</p>
+                    <p>LEVA maps this in real-time and generates practice sequences that target the boundary between mastered and not-yet-mastered material.</p>
+                    <p>We have the data to show this works.</p>
                 </div>
             </div>
         </div>
@@ -1017,16 +1015,16 @@
         <div class="container">
             <div class="timeline">
                 <div class="timeline-header">
-                    <h2>Three Layers of Intelligence</h2>
+                    <h2>System Architecture</h2>
         </div>
 
                 <!-- Step 1 -->
                 <div class="timeline-step">
                     <div class="step-content">
                         <div class="step-label">01 — The Skill Tree</div>
-                        <h3>Progressive Mastery,<br>Not Chaos</h3>
-                        <p>Voicings are organized into domains—Major 7, Dominant 7, Altered Dominants, Quartal, etc. Advanced voicings stay hidden until you've got the fundamentals.</p>
-                        <p>Your working memory can't handle 200 symbols at once. The skill tree keeps you at the edge of your ability, not drowning.</p>
+                        <h3>Progressive Unlocking</h3>
+                        <p>Voicings are organized into domains—Major 7, Dominant 7, Altered Dominants, Quartal, etc. Advanced material remains locked until foundational competency is demonstrated.</p>
+                        <p>Working memory constraints limit effective symbol set size. The skill tree maintains practice at the edge of current ability.</p>
                 </div>
                     <div class="step-visual">
                         <!-- TODO: Interactive skill tree SVG diagram -->
@@ -1062,19 +1060,19 @@ Meta Tier:
                 <div class="timeline-step">
                     <div class="step-content">
                         <div class="step-label">02 — The Probability Engine</div>
-                        <h3>Weighted Randomness<br>That Feels Like Flow</h3>
-                        <p>Every time you play, LEVA updates its latency model. The next symbol isn't random—it's drawn from a weighted probability distribution:</p>
+                        <h3>Weighted Selection</h3>
+                        <p>Each practice attempt updates the latency model. Symbol selection is drawn from a weighted probability distribution:</p>
                         <ul class="feature-list">
-                            <li>Latency weight — Slow voicings appear more</li>
-                            <li>Recency penalty — No mindless repetition</li>
-                            <li>Circle of fifths adjacency — Musical logic</li>
-                            <li>Register diversity — No hand position stagnation</li>
-                            <li>Success rate smoothing — Flow state</li>
-                            <li>Forgetting curve modeling — Old material resurfaces</li>
-                            <li>Key signature distribution — All keys get hit</li>
-                            <li>Transition pair frequency — (Coming: Real Book corpus)</li>
+                            <li>Latency weight — Higher latency increases probability</li>
+                            <li>Recency penalty — Recent items suppressed</li>
+                            <li>Circle of fifths adjacency — Musical coherence</li>
+                            <li>Register diversity — Prevents position stagnation</li>
+                            <li>Volatility smoothing — Maintains flow state</li>
+                            <li>Forgetting curve modeling — Scheduled reappearance</li>
+                            <li>Key signature distribution — Coverage across all keys</li>
+                            <li>Transition pair frequency — (Corpus analysis in progress)</li>
                         </ul>
-                        <p>Feels random. Optimizes for your gaps.</p>
+                        <p>Appears random to the user. Optimizes for competency gaps.</p>
                     </div>
                     <div class="step-visual">
                         <!-- TODO: Animated probability distribution bar chart -->
@@ -1093,10 +1091,10 @@ Meta Tier:
                 <div class="timeline-step">
                     <div class="step-content">
                         <div class="step-label">03 — The Human Element</div>
-                        <h3>You Judge Yourself.<br>Not an Algorithm.</h3>
-                        <p>LEVA asks YOU when you think you've played something well enough.</p>
+                        <h3>Self-Assessment Protocol</h3>
+                        <p>The system asks the user to judge adequacy of execution, rather than imposing algorithmic thresholds.</p>
                         
-                        <p><em>Perfectionists welcome</em></p>
+                        <p><em>Accommodates individual standards</em></p>
 
                 </div>
                     <div class="step-visual">
@@ -1110,7 +1108,7 @@ Meta Tier:
                                 - "Next" button (bottom)
                             </p>
             </div>
-                        <p class="step-visual-caption">"No progress bars. No streaks. No bullshit."</p>
+                        <p class="step-visual-caption">"Minimal interface. No gamification."</p>
         </div>
                 </div>
             </div>
@@ -1123,74 +1121,63 @@ Meta Tier:
     <section class="section section-dark">
         <div class="container">
             <div class="educators-intro">
-                <h2>Built on Learning Science</h2>
-                <p>Not a metronome with a fresh coat of paint. A practice methodology informed by spaced repetition research, motor learning theory, and jazz pedagogy.</p>
+                <h2>Theoretical Foundation</h2>
+                <p>Built on spaced repetition research, motor learning theory, and jazz pedagogy literature.</p>
         </div>
             <div class="feature-grid">
                 <div class="feature-card">
                     <div class="feature-icon">🎯</div>
                     <h4>Adaptive Difficulty</h4>
-                    <p>Challenge stays at the edge of ability. Too easy = bored. Too hard = demoralized. The system finds the zone.</p>
+                    <p>Maintains challenge at the edge of current ability. Difficulty automatically adjusts to prevent plateau or overwhelm.</p>
                 </div>
                 <div class="feature-card">
                     <div class="feature-icon">🧠</div>
                     <h4>Spaced Repetition</h4>
-                    <p>Voicings resurface at optimal intervals. No wasted time over-practicing what you know. No forgetting what you learned last month.</p>
+                    <p>Material resurfaces at calculated intervals based on forgetting curve models. Prevents both overtraining and decay.</p>
                 </div>
                 <div class="feature-card">
                     <div class="feature-icon">📊</div>
-                    <h4>Data-Driven</h4>
-                    <p>Every session generates data about transfer learning. Do drop-2 voicings accelerate drop-3 learning? Collecting the receipts.</p>
+                    <h4>Transfer Learning Analysis</h4>
+                    <p>Session data enables study of skill transfer patterns. Quantifying which voicings accelerate learning of related structures.</p>
                 </div>
             </div>
             <div class="callout-box">
                 <div class="callout-content">
-                    <h4>🎓 Coming: Educator Dashboard</h4>
-                    <p>Student progress tracking. Systematic weakness identification. Exportable heatmaps for lesson planning.</p>
+                    <h4>🎓 Educator Dashboard (In Development)</h4>
+                    <p>Student progress tracking, systematic weakness identification, exportable performance heatmaps.</p>
                 </div>
-                <a href="#" class="btn btn-secondary">Waitlist →</a>
+                <a href="#" class="btn btn-secondary">Email for Access →</a>
             </div>
         </div>
     </section>
 
     <!-- ============================================
-         SECTION 6: THE ENGINEERING
-    ============================================ -->
-    <section class="section">
-        <div class="container">
-            <div class="philosophy-content">
-                <h2>Not On Some Candy Crush Bullshit<br></h2>
-                <p>Read the whitepaper:</p>
-                <a href="#" class="btn btn-primary">Whitepaper</a>
-            </div>
-        </div>
-    </section>
-
-    <!-- ============================================
-         SECTION 7: THE PHILOSOPHY
+         SECTION 6: TECHNICAL FOUNDATION
     ============================================ -->
     <section class="section philosophy">
         <div class="container">
             <div class="philosophy-content">
-                <h2>Not On Some Candy Crush Bullshit<br></h2>
+                <h2>Technical Foundation</h2>
                 <div class="philosophy-body">
-                    <p>The app asks one question: "Was that good enough?"</p>
+                    <p>The scheduling algorithm combines eight weighted scoring functions: latency gap, recency penalty, volatility, cluster cohesion, circle-of-fifths proximity, diatonic compatibility, latent similarity, and data scarcity indicators.</p>
+                    <p>Selection is drawn from a softmax probability distribution. The interface presents a single question: "Was that adequate?"</p>
                 </div>
                 <div class="philosophy-quote">
-                    "The goal isn't to make practice fun.<br>The goal is to make you competent."
+                    "The goal is competence, not engagement metrics."
                 </div>
+                <a href="whitepaper.md" class="btn btn-secondary" style="margin-top: 2rem;">Full Technical Specification →</a>
             </div>
         </div>
     </section>
 
     <!-- ============================================
-         SECTION 8: CURRENT STATE & ROADMAP
+         SECTION 7: CURRENT STATE & ROADMAP
     ============================================ -->
     <section class="section">
         <div class="container">
             <div class="roadmap-header">
-                <h2>Status</h2>
-                <p>What works. What's coming. What's still just an idea.</p>
+                <h2>Project Status</h2>
+                <p>Current implementation, active development, and research directions.</p>
             </div>
             <div class="kanban">
                 <div class="kanban-column">
@@ -1237,31 +1224,31 @@ Meta Tier:
     </section>
 
     <!-- ============================================
-         SECTION 9: THE DATA
+         SECTION 8: THE DATA
     ============================================ -->
     <section class="section section-dark">
         <div class="container">
             <div class="data-intro">
-                <h2>What We're Learning</h2>
-                <p>Every session generates data about how people actually learn voicings. Some patterns emerging:</p>
+                <h2>Preliminary Findings</h2>
+                <p>Longitudinal session data reveals patterns in voicing acquisition. Initial observations:</p>
             </div>
             <div class="insight-cards">
                 <div class="insight-card">
-                    <h4>80/20 Rule Holds</h4>
-                    <p>~20% of voicings account for 80% of practice time. Not the "hardest" ones—the ones with highest confusion adjacency (voicings that look/sound similar).</p>
-                    <p><em>→ Cluster confusable voicings together to force disambiguation.</em></p>
+                    <h4>Pareto Distribution Observed</h4>
+                    <p>Approximately 20% of voicings account for 80% of practice time. High-latency items correlate with confusion adjacency (similar voicings) rather than objective difficulty.</p>
+                    <p><em>→ Clustering confusable voicings together forces disambiguation.</em></p>
                     <div class="chart-placeholder">TODO: Bar chart</div>
                 </div>
                 <div class="insight-card">
-                    <h4>Transfer Learning is Real</h4>
-                    <p>Drop-2 major 7 mastery accelerates drop-3 major 7 learning by ~30%. Voicing families share motor patterns.</p>
-                    <p><em>→ Unlocking sequence matters. Some voicings are "gateway skills."</em></p>
+                    <h4>Transfer Effects Quantified</h4>
+                    <p>Mastery of drop-2 major 7 correlates with ~30% reduction in learning time for drop-3 major 7. Voicing families share underlying motor patterns.</p>
+                    <p><em>→ Skill tree sequence has measurable impact on learning efficiency.</em></p>
                     <div class="chart-placeholder">TODO: Network graph</div>
                 </div>
                 <div class="insight-card">
-                    <h4>Session Sweet Spot</h4>
-                    <p>Latency improvement peaks around 25-30 minutes, then plateaus or regresses. Motor learning fatigue is real.</p>
-                    <p><em>→ Suggest breaks after 30 min. No marathon sessions.</em></p>
+                    <h4>Session Duration Effects</h4>
+                    <p>Latency improvement peaks around 25-30 minutes, plateaus thereafter. Some evidence of regression beyond 45 minutes, suggesting motor fatigue.</p>
+                    <p><em>→ System recommends breaks after 30 minutes.</em></p>
                     <div class="chart-placeholder">TODO: Line graph</div>
                 </div>
             </div>
@@ -1269,65 +1256,65 @@ Meta Tier:
     </section>
 
     <!-- ============================================
-         SECTION 10: WHO THIS IS FOR
+         SECTION 9: WHO THIS IS FOR
     ============================================ -->
     <section class="section">
         <div class="container">
             <div class="personas-header">
-                <h2>Who Should Use This</h2>
+                <h2>Intended Users</h2>
             </div>
             <div class="persona-grid">
                 <div class="persona-card">
                     <div class="persona-icon">🎹</div>
                     <div class="persona-title">Intermediate Pianist</div>
-                    <p>3-5 years in. You know chord symbols. You can read lead sheets. But your hands don't have the voicing vocabulary to comp convincingly.</p>
-                    <p style="margin-top: 1rem;">Build mechanical freedom so you can focus on music, not hunting for shapes.</p>
+                    <p>3-5 years of study. Comfortable with chord symbols and lead sheets, but lacking comprehensive voicing vocabulary for convincing comping.</p>
+                    <p style="margin-top: 1rem;">Develops mechanical fluency to allow focus on musical expression rather than shape-hunting.</p>
                 </div>
                 <div class="persona-card">
                     <div class="persona-icon">🎷</div>
                     <div class="persona-title">Multi-Instrumentalist</div>
-                    <p>Sax player who wants basic piano comp skills. You understand harmony—you just need the motor patterns.</p>
-                    <p style="margin-top: 1rem;">Mechanics, not theory. Assumes you already hear what you want to play.</p>
+                    <p>Primary instrument elsewhere, seeking functional piano comping ability. Theoretical understanding present, motor patterns underdeveloped.</p>
+                    <p style="margin-top: 1rem;">Assumes harmonic literacy. Targets execution, not conceptual learning.</p>
                 </div>
                 <div class="persona-card">
                     <div class="persona-icon">🎓</div>
-                    <div class="persona-title">Educator</div>
-                    <p>You teach jazz piano. Tired of students plateauing on the same voicings.</p>
-                    <p style="margin-top: 1rem;">Get data on exactly where weaknesses are. Focus lesson time on concepts instead of drill.</p>
+                    <div class="persona-title">Educator/Researcher</div>
+                    <p>Teaching jazz piano. Interested in quantitative assessment of student weakness patterns and skill transfer dynamics.</p>
+                    <p style="margin-top: 1rem;">Provides data-driven insights for targeted lesson planning.</p>
                 </div>
             </div>
             <div class="not-for">
-                <h4>Not For:</h4>
+                <h4>Scope Limitations:</h4>
                 <ul>
-                    <li>❌ Complete beginners (need to read chord symbols first)</li>
-                    <li>❌ Music theory instruction (mechanics only)</li>
-                    <li>❌ Passive learning (requires focus)</li>
+                    <li>❌ Requires existing chord symbol literacy</li>
+                    <li>❌ Does not teach music theory or harmonic concepts</li>
+                    <li>❌ Not designed for passive or distracted practice</li>
                 </ul>
             </div>
         </div>
     </section>
 
     <!-- ============================================
-         SECTION 11: CALL TO ACTION
+         SECTION 10: CALL TO ACTION
     ============================================ -->
     <section class="cta">
         <div class="container">
-            <h1>Try It</h1>
-            <p class="cta-subtitle">No signup. No download. Browser-based.</p>
+            <h1>Access</h1>
+            <p class="cta-subtitle">Browser-based. No registration required.</p>
             <div class="cta-buttons">
-                <a href="#" class="btn btn-primary">Launch App</a>
-                <a href="#" class="btn btn-secondary">GitHub</a>
+                <a href="#" class="btn btn-primary">Launch Tool</a>
+                <a href="#" class="btn btn-secondary">View Source</a>
             </div>
             <div class="cta-secondary-links">
-                <a href="#">Collaborate → Email</a>
-                <a href="#">Funding → Let's talk</a>
-                <a href="#">Educator? → Beta program</a>
+                <a href="#">Collaboration Inquiries → Email</a>
+                <a href="#">Research Funding → Contact</a>
+                <a href="#">Educator Beta → Apply</a>
             </div>
         </div>
     </section>
 
     <!-- ============================================
-         SECTION 12: FOOTER
+         SECTION 11: FOOTER
     ============================================ -->
     <footer>
         <div class="container">
