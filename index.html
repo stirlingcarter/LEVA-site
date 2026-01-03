@@ -1,680 +1,1374 @@
 <!DOCTYPE html>
 <html lang="en">
-
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>LEVA — Adaptive Practice Engine for Jazz Piano</title>
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@200;300;400;500;600;700&family=JetBrains+Mono:wght@300;400&display=swap" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css2?family=Syne:wght@400;500;600;700;800&family=Instrument+Sans:wght@400;500;600&family=JetBrains+Mono:wght@400;500&display=swap" rel="stylesheet">
+    <!-- TODO: Add Prism.js for code syntax highlighting -->
+    <!-- TODO: Add AOS library for scroll animations -->
     <style>
         :root {
-            --primary-color: #f0f0f0;
-            --secondary-color: #a0a0a0;
-            --accent-color: #3d82f7;
-            --accent-hover: #2d6df5;
-            --background-color: #080808;
-            --component-bg: rgba(25, 25, 25, 0.5);
-            --hover-color: rgba(35, 35, 35, 0.7);
-            --section-spacing: 4rem;
-            --heading-spacing: 3rem;
-            --border-radius: 18px;
-            --box-shadow: 0 20px 40px rgba(0, 0, 0, 0.18);
-            --text-shadow: 0 2px 5px rgba(0, 0, 0, 0.2);
-            --subtle-glow: 0 0 30px rgba(255, 255, 255, 0.03);
+            --primary: #2C5F2D;
+            --primary-glow: rgba(44, 95, 45, 0.3);
+            --secondary: #FFD700;
+            --background: #0A0E0D;
+            --surface: #1A1F1E;
+            --surface-elevated: #242A28;
+            --text-primary: #E8E6E3;
+            --text-secondary: #9B9B9B;
+            --accent: #FF6B35;
+            --accent-hover: #FF8555;
+            --section-padding: 120px;
+            --container-width: 1200px;
+            --grid-gap: 32px;
+            --border-radius: 16px;
+        }
+
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        html {
+            scroll-behavior: smooth;
         }
 
         body {
-            font-family: 'Inter', -apple-system, BlinkMacSystemFont, sans-serif;
+            font-family: 'Instrument Sans', -apple-system, BlinkMacSystemFont, sans-serif;
+            background-color: var(--background);
+            color: var(--text-primary);
             line-height: 1.7;
-            color: var(--primary-color);
-            margin: 0;
-            background-color: var(--background-color);
-            background-image: 
-                radial-gradient(circle at 15% 35%, rgba(255, 255, 255, 0.02) 0%, transparent 40%),
-                radial-gradient(circle at 85% 75%, rgba(255, 255, 255, 0.01) 0%, transparent 45%);
-            background-attachment: fixed;
             overflow-x: hidden;
-            padding: 0;
-            font-weight: 300;
-            letter-spacing: -0.02em;
-        }
-
-        /* Add subtle noise texture for depth */
-        body::before {
-            content: "";
-            position: fixed;
-            top: 0;
-            left: 0;
-            width: 100%;
-            height: 100%;
-            background-image: url('data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAADIAAAAyCAYAAAAeP4ixAAAAAXNSR0IArs4c6QAABLBJREFUaEPtmttx3DAMRVn1I3s3leT9HUwqSf8pIZXs7h7JrbDCESiKIMUH7TizM/nYXYkg7gUuQJm0OxzPGONzjPEwxhj5GWO8xBjPMcbrnz/fxuNhHn777df58/n8T0p5ijEe89/4/GV+flms7e/lj6Kz/R/s/6Vz7P0KAADwLsa45S8BAMhTzvlzYaYIACNgvuYYMhAALDnndwLx+RgDSynlOOb8JeWclwTSIyQsICxkEYDMOX+Rgj44AIwIQJZS2krn2VtaG9YAIHQeQTAk5e/BLZH9lscIwQiBzV9yzptF3FoBUWHFAGCFFtKbdpTRVbxQRwQAHb9b+y1D/Ap9oX30hg2e2VSWCiESUrRBDHOTXyyCYIW35Z1IWKEk9R0h9rG1AFrKWyHF53YKvWEhHXFNKaXI24ilBGCqbGcAJgAnK+8ghLkAACvZ9sIKA7C40MbXVtaNs8MBLAVWs9LfCwxALM9FoDQAWKSU3kAkADrX28Oz9VsSQJPiA2BERy2sFZH3dWhlZW5dsMGXBGBx7+0t9gqxoUyj4Qw2OWfVJaOVZSJoHWhv7NUibEjdHBZJmVIqlvmGlaX6w7aAoHPeOoY9faBMDqvFYmJtCKBQf2QhZWEpZRE71Cukl0j3GrQiCFSPiTEYQPiRUn5gjR9CzhnLfUcaX7NQz/mjIGr6QbVVjAP2CSQB+FRKOYqJz8FKW1iR9aIm6d0Q25TiJQjqEaOhjSlnCrGN7eVfAYYXWrSSvNuiEcDaM7Qk2NKkVGbcAkO1RjWQtCqKbV0jtBBItTCf9pWhtVcI3cFGG0xRELXkLxVMaJVZ/YAoM1dAeuJbPsxCg0rSA9Cj2JT66XyFIBATSA8I2whYrM+XtEpOJVJKE4jpnJai8n7BuN6B0pS3KL4A8tQ9tKrG16T5KQvRzVkrzLx2C3sLr5FU/+4BQnE9vXD2hNbuQvoooJTrv+7l2mI3SCtV7y2e/3tARGF0MYtYZk2v8CJeIaP5xrS5u+lNaR5vF57IEVnFJHLRJBhpZFVL7CutuZd1Iw3FEQtFQ2FqHNJQEq2pPULs4UcbS0L7PjxXS/VRGF7YbamAkDcj3V0UhBbvXtsgCsLrBcRhpWaSSyC1eRFdJyD2vWUajLdAabXNpCcMEX5eEJqdlvOUvVz++5ZarYlTYVirT0prC0wnF63TaAGYejxaqbwF0L0CtXIQ3edGzqIxoNJTXH17eAaA+kRlGtBOBYR00YVKL3QvRX86XvZ89VBXtYuuMbXi93QH6iyRaXbeImYgOedy2wPAg05S+zNlInbY8haBlfQnIHs8YsJ+AKkVu+ZgMXXbfcuJx50AQAz8+m3yFnUVtfJQPEu/Tce+FXjtdvV6WnuZOm1r9Dq0gLRaPyW0WqE0GlabF7pX6mDtWoWvxrV9RuhS9gDSUtqiZVJvS3M0nOYerff+oi0/CyA+6UWTIsDMN8mt9GRq/L9mKnMghBdvx5Yg5DJA/vOj3aTwHGqEjQeh+sHnB55pICsFIV+j80VCRLSIeJlV2fQW/gHnk/8CnlAwxQAAAABJRU5ErkJggg==');
-            opacity: 0.03;
-            pointer-events: none;
-            z-index: -1;
         }
 
         .container {
-            max-width: 900px;
+            max-width: var(--container-width);
             margin: 0 auto;
             padding: 0 2rem;
         }
 
-        .header {
-            height: 25vh;
+        /* ============================================
+           TYPOGRAPHY
+        ============================================ */
+        h1, h2, h3, .step-label {
+            font-family: 'Syne', sans-serif;
+            font-weight: 700;
+            letter-spacing: -0.02em;
+        }
+
+        h1 {
+            font-size: clamp(3rem, 8vw, 5.5rem);
+            line-height: 1.05;
+        }
+
+        h2 {
+            font-size: clamp(2rem, 5vw, 3rem);
+            line-height: 1.15;
+            margin-bottom: 1.5rem;
+        }
+
+        h3 {
+            font-size: clamp(1.5rem, 3vw, 2rem);
+            line-height: 1.25;
+            margin-bottom: 1rem;
+        }
+
+        p {
+            font-size: 1.125rem;
+            color: var(--text-secondary);
+            max-width: 65ch;
+        }
+
+        .text-accent {
+            color: var(--secondary);
+        }
+
+        code, .code-font {
+            font-family: 'JetBrains Mono', monospace;
+        }
+
+        /* ============================================
+           BUTTONS
+        ============================================ */
+        .btn {
+            display: inline-flex;
+            align-items: center;
+            gap: 0.5rem;
+            padding: 1rem 2rem;
+            border-radius: 8px;
+            font-family: 'Instrument Sans', sans-serif;
+            font-weight: 600;
+            font-size: 1rem;
+            text-decoration: none;
+            cursor: pointer;
+            transition: all 0.3s ease;
+            border: none;
+        }
+
+        .btn-primary {
+            background: var(--accent);
+            color: white;
+            box-shadow: 0 4px 20px rgba(255, 107, 53, 0.3);
+        }
+
+        .btn-primary:hover {
+            background: var(--accent-hover);
+            transform: translateY(-2px);
+            box-shadow: 0 6px 30px rgba(255, 107, 53, 0.4);
+        }
+
+        .btn-secondary {
+            background: transparent;
+            color: var(--text-primary);
+            border: 1px solid rgba(255, 255, 255, 0.2);
+        }
+
+        .btn-secondary:hover {
+            background: rgba(255, 255, 255, 0.05);
+            border-color: rgba(255, 255, 255, 0.4);
+        }
+
+        /* ============================================
+           SECTION: HERO
+        ============================================ */
+        .hero {
+            min-height: 100vh;
             display: flex;
             flex-direction: column;
             justify-content: center;
             align-items: center;
             text-align: center;
-            position: relative;
-            padding-top: 2rem;
-            padding-bottom: 3rem;
-            background: linear-gradient(180deg, rgba(0,0,0,0) 0%, var(--background-color) 100%);
-        }
-
-        h1 {
-            font-size: 6rem;
-            margin-bottom: 0.5rem;
-            font-weight: 200;
-            letter-spacing: -0.06em;
-            width: 100%;
-            text-align: center;
-            text-shadow: var(--text-shadow);
-            background: linear-gradient(90deg, #fff 0%, #ebebeb 100%);
-            -webkit-background-clip: text;
-            -webkit-text-fill-color: transparent;
-            animation: fadeIn 1.5s ease-out forwards;
-            opacity: 0;
-        }
-
-        @keyframes fadeIn {
-            from { opacity: 0; transform: translateY(10px); }
-            to { opacity: 1; transform: translateY(0); }
-        }
-
-        /* Add mobile responsiveness for header */
-        @media (max-width: 700px) {
-            h1 {
-                font-size: 4rem;
-                padding: 0.5rem 0;
-            }
-            .header {
-                height: 22vh;
-                padding-top: 1.5rem;
-            }
-        }
-
-        h2 {
-            font-size: 2.4rem;
-            margin: var(--heading-spacing) 0 1.5rem;
-            color: var(--primary-color);
-            letter-spacing: -0.03em;
-            font-weight: 300;
-            position: relative;
-            padding-bottom: 0.5rem;
-            display: inline-block;
-        }
-        
-        h2::after {
-            content: "";
-            position: absolute;
-            left: 0;
-            bottom: 0;
-            width: 100%;
-            height: 1px;
-            background: linear-gradient(90deg, rgba(255,255,255,0.1) 0%, rgba(255,255,255,0.5) 50%, rgba(255,255,255,0.1) 100%);
-            border-radius: 2px;
-            transform-origin: left center;
-            transform: scaleX(0.3);
-            transition: transform 0.5s cubic-bezier(0.23, 1, 0.32, 1);
-        }
-
-        h2:hover::after {
-            transform: scaleX(0.5);
-        }
-
-        .counter {
-            font-family: 'JetBrains Mono', monospace;
-            font-size: 1.2rem;
-            color: var(--accent-color);
-            margin: 2rem 0;
-            text-align: center;
-        }
-
-        .section {
-            margin-bottom: var(--section-spacing);
-            opacity: 0;
-            transform: translateY(20px);
-            transition: opacity 0.9s ease-out, transform 0.9s ease-out;
-            max-width: 900px;
-            margin-left: auto;
-            margin-right: auto;
-            padding: 0 2rem;
-        }
-
-        .header+.section {
-            margin-top: 1rem;
-        }
-
-        /* First section special spacing */
-        .section:first-of-type + .section {
-            margin-top: 1rem;
-        }
-
-        .section.visible {
-            opacity: 1;
-            transform: translateY(0);
-        }
-        
-        .section p {
-            font-size: 1.1rem;
-            line-height: 1.8;
-            margin-bottom: 1.8rem;
-            font-weight: 300;
-        }
-
-        .image-break {
-            width: 100%;
-            height: 45vh;
-            margin: 5rem 0;
-            position: relative;
-            overflow: hidden;
-            border-radius: var(--border-radius);
-            box-shadow: var(--box-shadow);
-        }
-
-        .image-break img {
-            width: 100%;
-            height: 100%;
-            object-fit: cover;
-            transform: scale(1.1);
-            transition: transform 0.5s ease-out;
-        }
-
-        .components {
-            display: grid;
-            gap: 2.5rem;
-            max-width: 900px;
-            margin-left: auto;
-            margin-right: auto;
-        }
-
-        .component {
-            padding: 2.5rem;
-            background: var(--component-bg);
-            border-radius: var(--border-radius);
-            margin-bottom: 2.5rem;
-            transition: all 0.4s ease;
-            box-shadow: var(--box-shadow);
-            border: 1px solid rgba(255, 255, 255, 0.03);
-            backdrop-filter: blur(10px);
-            -webkit-backdrop-filter: blur(10px);
-        }
-
-        .component:hover {
-            transform: translateY(-5px) scale(1.01);
-            background-color: var(--hover-color);
-            box-shadow: 0 25px 50px rgba(0, 0, 0, 0.2);
-            border: 1px solid rgba(255, 255, 255, 0.05);
-        }
-
-        ul {
-            list-style-type: none;
-            padding-left: 0;
-            margin-top: 1.8rem;
-            margin-bottom: 1.8rem;
-        }
-
-        li {
-            margin-bottom: 1.2rem;
-            position: relative;
-            padding-left: 1.8rem;
-            font-size: 1.1rem;
-            font-weight: 300;
-            transition: transform 0.3s ease;
-        }
-
-        li:hover {
-            transform: translateX(5px);
-        }
-
-        li::before {
-            content: "→";
-            position: absolute;
-            left: 0;
-            color: rgba(255, 255, 255, 0.6);
-            font-weight: 400;
-            transition: color 0.3s ease, transform 0.3s ease;
-        }
-
-        li:hover::before {
-            color: var(--accent-color);
-            transform: translateX(2px);
-        }
-
-        .parallax {
+            padding: 2rem;
             position: relative;
             overflow: hidden;
         }
 
-        .parallax-bg {
+        .hero-bg {
             position: absolute;
-            top: 0;
-            left: 0;
-            width: 100%;
-            height: 100%;
+            inset: 0;
             z-index: -1;
+            opacity: 0.3;
+            /* TODO: Add video background - slower.mp4 */
+            background: linear-gradient(135deg, var(--primary-glow) 0%, transparent 50%);
         }
 
-        .image-with-caption {
-            margin-bottom: 3.5rem;
+        .hero-bg::after {
+            content: '';
+            position: absolute;
+            inset: 0;
+            background: linear-gradient(to bottom, transparent 0%, var(--background) 100%);
+        }
+
+        .hero h1 {
+            margin-bottom: 1.5rem;
+            max-width: 900px;
+        }
+
+        .hero-subtitle {
+            font-size: 1.25rem;
+            color: var(--text-secondary);
+            max-width: 600px;
+            margin: 0 auto 3rem;
+            line-height: 1.8;
+        }
+
+        .hero-stats {
             display: flex;
-            flex-direction: column;
+            gap: 4rem;
+            margin-bottom: 3rem;
+        }
+
+        .stat {
+            text-align: center;
+        }
+
+        .stat-number {
+            font-family: 'Syne', sans-serif;
+            font-size: 3rem;
+            font-weight: 800;
+            color: var(--text-primary);
+            line-height: 1;
+        }
+
+        .stat-label {
+            font-size: 0.875rem;
+            color: var(--text-secondary);
+            text-transform: uppercase;
+            letter-spacing: 0.1em;
+            margin-top: 0.5rem;
+        }
+
+        .hero-buttons {
+            display: flex;
+            gap: 1rem;
+            flex-wrap: wrap;
+            justify-content: center;
+        }
+
+        /* ============================================
+           SECTION: THE PROBLEM
+        ============================================ */
+        .section {
+            padding: var(--section-padding) 0;
+        }
+
+        .section-dark {
+            background: var(--surface);
+        }
+
+        .section-light {
+            background: #151A18;
+        }
+
+        .problem {
+            display: grid;
+            grid-template-columns: 1.5fr 1fr;
+            gap: 4rem;
             align-items: center;
         }
 
-        .caption {
-            font-size: 0.95rem;
-            color: var(--secondary-color);
-            margin-top: 1.2rem;
-            font-style: italic;
-            text-align: center;
-            max-width: 90%;
-            font-weight: 300;
+        .problem-list {
+            list-style: none;
+            margin: 2rem 0;
         }
 
-        .image-with-caption img,
-        .image-with-caption video {
-            max-width: 350px;
-            width: 100%;
-            height: auto;
-            display: block;
-            margin: 0 auto;
+        .problem-list li {
+            padding: 0.75rem 0;
+            padding-left: 1.5rem;
+            position: relative;
+            color: var(--text-secondary);
+            font-size: 1.1rem;
+        }
+
+        .problem-list li::before {
+            content: '•';
+            position: absolute;
+            left: 0;
+            color: var(--accent);
+        }
+
+        .heatmap-placeholder {
+            background: var(--surface);
+            border: 1px dashed rgba(255, 255, 255, 0.2);
             border-radius: var(--border-radius);
-            box-shadow: var(--box-shadow);
-            transition: all 0.5s cubic-bezier(0.2, 0.8, 0.2, 1);
-            border: 1px solid rgba(255, 255, 255, 0.03);
+            padding: 3rem 2rem;
+            text-align: center;
+            min-height: 300px;
+            display: flex;
+            flex-direction: column;
+            justify-content: center;
+            align-items: center;
+            gap: 1rem;
         }
 
-        /* Featured image styling - makes the first image larger */
-        .featured-image {
-            max-width: 600px !important;
-            width: 100%;
-            height: auto;
-            margin: 2rem auto;
-            box-shadow: 0 30px 60px rgba(0, 0, 0, 0.25), var(--subtle-glow);
+        .placeholder-label {
+            color: var(--text-secondary);
+            font-size: 0.875rem;
+            text-transform: uppercase;
+            letter-spacing: 0.1em;
         }
 
-        .image-with-caption img:hover,
-        .image-with-caption video:hover {
-            box-shadow: 0 30px 60px rgba(0, 0, 0, 0.3), var(--subtle-glow);
-            transform: translateY(-10px) scale(1.02);
-        }
-
-        .screenshots-grid {
-            display: grid;
-            grid-template-columns: repeat(2, 1fr);
-            gap: 4rem;
+        /* ============================================
+           SECTION: THE INSIGHT
+        ============================================ */
+        .insight {
+            text-align: center;
             max-width: 900px;
-            margin: 3rem auto;
+            margin: 0 auto;
         }
 
-        /* Make grid single column on mobile */
-        @media (max-width: 700px) {
-            .screenshots-grid {
+        .pull-quote {
+            font-family: 'Syne', sans-serif;
+            font-size: clamp(1.75rem, 4vw, 2.5rem);
+            font-weight: 600;
+            line-height: 1.4;
+            color: var(--text-primary);
+            margin-bottom: 3rem;
+            position: relative;
+        }
+
+        .pull-quote::before {
+            content: '"';
+            position: absolute;
+            left: -0.5em;
+            top: -0.2em;
+            font-size: 4em;
+            color: var(--primary);
+            opacity: 0.3;
+            font-family: Georgia, serif;
+        }
+
+        .insight-body {
+            max-width: 800px;
+            margin: 0 auto;
+        }
+
+        .insight-body p {
+            margin-bottom: 1.5rem;
+            font-size: 1.125rem;
+        }
+
+        /* ============================================
+           SECTION: HOW IT WORKS (TIMELINE)
+        ============================================ */
+        .timeline {
+            max-width: 1000px;
+            margin: 0 auto;
+        }
+
+        .timeline-header {
+            text-align: center;
+            margin-bottom: 5rem;
+        }
+
+        .timeline-step {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 4rem;
+            margin-bottom: 6rem;
+            align-items: center;
+        }
+
+        .timeline-step:nth-child(even) .step-content {
+            order: 2;
+        }
+
+        .timeline-step:nth-child(even) .step-visual {
+            order: 1;
+        }
+
+        .step-label {
+            font-size: 0.875rem;
+            color: var(--secondary);
+            text-transform: uppercase;
+            letter-spacing: 0.15em;
+            margin-bottom: 1rem;
+            font-weight: 600;
+        }
+
+        .step-content h3 {
+            margin-bottom: 1.5rem;
+        }
+
+        .step-content p {
+            margin-bottom: 1rem;
+        }
+
+        .feature-list {
+            list-style: none;
+            margin-top: 1.5rem;
+        }
+
+        .feature-list li {
+            padding: 0.5rem 0;
+            padding-left: 1.75rem;
+            position: relative;
+            color: var(--text-secondary);
+            font-size: 1rem;
+        }
+
+        .feature-list li::before {
+            content: '→';
+            position: absolute;
+            left: 0;
+            color: var(--primary);
+        }
+
+        .step-visual {
+            background: var(--surface);
+            border-radius: var(--border-radius);
+            padding: 2rem;
+            min-height: 350px;
+            display: flex;
+            flex-direction: column;
+            justify-content: center;
+        }
+
+        .skill-tree-placeholder {
+            font-family: 'JetBrains Mono', monospace;
+            font-size: 0.85rem;
+            color: var(--text-secondary);
+            white-space: pre-line;
+            line-height: 1.6;
+        }
+
+        .step-visual-caption {
+            font-size: 0.875rem;
+            color: var(--text-secondary);
+            text-align: center;
+            margin-top: 1rem;
+            font-style: italic;
+        }
+
+        /* ============================================
+           SECTION: FOR EDUCATORS
+        ============================================ */
+        .educators-intro {
+            text-align: center;
+            max-width: 800px;
+            margin: 0 auto 4rem;
+        }
+
+        .feature-grid {
+            display: grid;
+            grid-template-columns: repeat(3, 1fr);
+            gap: var(--grid-gap);
+            margin-bottom: 3rem;
+        }
+
+        .feature-card {
+            background: var(--surface);
+            border-radius: var(--border-radius);
+            padding: 2rem;
+            text-align: center;
+        }
+
+        .feature-icon {
+            font-size: 2.5rem;
+            margin-bottom: 1rem;
+        }
+
+        .feature-card h4 {
+            font-family: 'Syne', sans-serif;
+            font-weight: 600;
+            font-size: 1.25rem;
+            margin-bottom: 1rem;
+        }
+
+        .feature-card p {
+            font-size: 1rem;
+            margin: 0 auto;
+        }
+
+        .callout-box {
+            background: linear-gradient(135deg, var(--primary-glow), transparent);
+            border: 1px solid var(--primary);
+            border-radius: var(--border-radius);
+            padding: 2rem 3rem;
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+            flex-wrap: wrap;
+            gap: 1.5rem;
+        }
+
+        .callout-content h4 {
+            font-family: 'Syne', sans-serif;
+            font-size: 1.25rem;
+            margin-bottom: 0.5rem;
+        }
+
+        .callout-content p {
+            font-size: 1rem;
+            margin: 0;
+        }
+
+        /* ============================================
+           SECTION: THE ENGINEERING
+        ============================================ */
+        .engineering {
+            display: grid;
+            grid-template-columns: 2fr 3fr;
+            gap: 4rem;
+            align-items: start;
+        }
+
+        .engineering-text h2 {
+            margin-bottom: 0.5rem;
+        }
+
+        .engineering-subtitle {
+            color: var(--text-secondary);
+            font-size: 1rem;
+            margin-bottom: 2rem;
+        }
+
+        .engineering-text ul {
+            list-style: none;
+            margin: 1.5rem 0;
+        }
+
+        .engineering-text ul li {
+            padding: 0.4rem 0;
+            padding-left: 1.25rem;
+            position: relative;
+            color: var(--text-secondary);
+        }
+
+        .engineering-text ul li::before {
+            content: '—';
+            position: absolute;
+            left: 0;
+            color: var(--primary);
+        }
+
+        .code-block {
+            background: #0D1210;
+            border-radius: var(--border-radius);
+            padding: 1.5rem;
+            overflow-x: auto;
+            border: 1px solid rgba(255, 255, 255, 0.05);
+        }
+
+        .code-block pre {
+            margin: 0;
+            font-family: 'JetBrains Mono', monospace;
+            font-size: 0.85rem;
+            line-height: 1.7;
+            color: var(--text-secondary);
+        }
+
+        .code-block .comment { color: #6A7670; }
+        .code-block .keyword { color: #FF6B35; }
+        .code-block .function { color: #FFD700; }
+        .code-block .string { color: #2C5F2D; }
+        .code-block .number { color: #9B9B9B; }
+
+        .tech-stack {
+            margin-top: 2rem;
+        }
+
+        .tech-stack h4 {
+            font-family: 'Syne', sans-serif;
+            font-size: 1rem;
+            margin-bottom: 1rem;
+            color: var(--text-primary);
+        }
+
+        .roadmap-section {
+            margin-top: 2rem;
+            padding-top: 2rem;
+            border-top: 1px solid rgba(255, 255, 255, 0.1);
+        }
+
+        .roadmap-section h4 {
+            font-family: 'Syne', sans-serif;
+            font-size: 0.875rem;
+            margin-bottom: 0.75rem;
+            color: var(--text-secondary);
+        }
+
+        .roadmap-section ul {
+            list-style: none;
+        }
+
+        .roadmap-section li {
+            font-size: 0.9rem;
+            padding: 0.3rem 0;
+            color: var(--text-secondary);
+        }
+
+        /* ============================================
+           SECTION: THE PHILOSOPHY
+        ============================================ */
+        .philosophy {
+            background: #151A18;
+        }
+
+        .philosophy-content {
+            text-align: center;
+            max-width: 900px;
+            margin: 0 auto;
+        }
+
+        .philosophy-content h2 {
+            margin-bottom: 2rem;
+        }
+
+        .philosophy-body {
+            text-align: left;
+            max-width: 800px;
+            margin: 0 auto;
+        }
+
+        .philosophy-body p {
+            margin-bottom: 1.5rem;
+            font-size: 1.125rem;
+        }
+
+        .philosophy-quote {
+            font-family: 'Syne', sans-serif;
+            font-size: 1.75rem;
+            font-weight: 600;
+            text-align: center;
+            color: var(--text-primary);
+            margin: 3rem 0;
+            padding: 2rem;
+            border-left: 4px solid var(--secondary);
+            background: rgba(255, 215, 0, 0.05);
+        }
+
+        /* ============================================
+           SECTION: ROADMAP (KANBAN)
+        ============================================ */
+        .roadmap-header {
+            text-align: center;
+            margin-bottom: 4rem;
+        }
+
+        .kanban {
+            display: grid;
+            grid-template-columns: repeat(4, 1fr);
+            gap: 1.5rem;
+        }
+
+        .kanban-column {
+            background: var(--surface);
+            border-radius: var(--border-radius);
+            padding: 1.5rem;
+        }
+
+        .kanban-title {
+            font-family: 'Syne', sans-serif;
+            font-size: 1rem;
+            font-weight: 600;
+            margin-bottom: 1.5rem;
+            padding-bottom: 1rem;
+            border-bottom: 1px solid rgba(255, 255, 255, 0.1);
+        }
+
+        .kanban-item {
+            font-size: 0.9rem;
+            color: var(--text-secondary);
+            padding: 0.5rem 0;
+            display: flex;
+            align-items: flex-start;
+            gap: 0.5rem;
+        }
+
+        .kanban-item span {
+            flex-shrink: 0;
+        }
+
+        /* ============================================
+           SECTION: THE DATA
+        ============================================ */
+        .data-intro {
+            text-align: center;
+            max-width: 700px;
+            margin: 0 auto 4rem;
+        }
+
+        .insight-cards {
+            display: grid;
+            grid-template-columns: repeat(3, 1fr);
+            gap: var(--grid-gap);
+        }
+
+        .insight-card {
+            background: var(--surface);
+            border-radius: var(--border-radius);
+            padding: 2rem;
+        }
+
+        .insight-card h4 {
+            font-family: 'Syne', sans-serif;
+            font-size: 1.25rem;
+            margin-bottom: 1rem;
+        }
+
+        .insight-card p {
+            font-size: 0.95rem;
+            margin-bottom: 1.5rem;
+        }
+
+        .chart-placeholder {
+            background: rgba(0, 0, 0, 0.3);
+            border: 1px dashed rgba(255, 255, 255, 0.2);
+            border-radius: 8px;
+            height: 120px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 0.75rem;
+            color: var(--text-secondary);
+            text-transform: uppercase;
+            letter-spacing: 0.1em;
+        }
+
+        /* ============================================
+           SECTION: WHO THIS IS FOR
+        ============================================ */
+        .personas-header {
+            text-align: center;
+            margin-bottom: 4rem;
+        }
+
+        .persona-grid {
+            display: grid;
+            grid-template-columns: repeat(3, 1fr);
+            gap: var(--grid-gap);
+            margin-bottom: 4rem;
+        }
+
+        .persona-card {
+            background: var(--surface);
+            border-radius: var(--border-radius);
+            padding: 2rem;
+            text-align: center;
+        }
+
+        .persona-icon {
+            font-size: 3rem;
+            margin-bottom: 1rem;
+        }
+
+        .persona-title {
+            font-family: 'Syne', sans-serif;
+            font-size: 1.125rem;
+            font-weight: 600;
+            margin-bottom: 1rem;
+        }
+
+        .persona-card p {
+            font-size: 0.95rem;
+            margin: 0 auto;
+            text-align: left;
+        }
+        
+        .not-for {
+            background: rgba(255, 107, 53, 0.1);
+            border: 1px solid rgba(255, 107, 53, 0.3);
+            border-radius: var(--border-radius);
+            padding: 2rem;
+            max-width: 700px;
+            margin: 0 auto;
+        }
+
+        .not-for h4 {
+            font-family: 'Syne', sans-serif;
+            font-size: 1rem;
+            margin-bottom: 1rem;
+            color: var(--accent);
+        }
+
+        .not-for ul {
+            list-style: none;
+        }
+
+        .not-for li {
+            padding: 0.4rem 0;
+            color: var(--text-secondary);
+            font-size: 0.95rem;
+        }
+
+        /* ============================================
+           SECTION: CTA
+        ============================================ */
+        .cta {
+            text-align: center;
+            padding: 8rem 2rem;
+            background: linear-gradient(180deg, var(--surface) 0%, var(--background) 100%);
+        }
+
+        .cta h1 {
+            margin-bottom: 1rem;
+        }
+
+        .cta-subtitle {
+            font-size: 1.25rem;
+            color: var(--text-secondary);
+            margin-bottom: 3rem;
+        }
+
+        .cta-buttons {
+            display: flex;
+            gap: 1rem;
+            justify-content: center;
+            flex-wrap: wrap;
+            margin-bottom: 3rem;
+        }
+
+        .cta-secondary-links {
+            display: flex;
+            gap: 2rem;
+            justify-content: center;
+            flex-wrap: wrap;
+            margin-top: 2rem;
+        }
+
+        .cta-secondary-links a {
+            color: var(--text-secondary);
+            text-decoration: none;
+            font-size: 0.95rem;
+            transition: color 0.3s ease;
+        }
+
+        .cta-secondary-links a:hover {
+            color: var(--text-primary);
+        }
+
+        /* ============================================
+           FOOTER
+        ============================================ */
+        footer {
+            padding: 4rem 0;
+            border-top: 1px solid rgba(255, 255, 255, 0.05);
+        }
+
+        .footer-content {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            flex-wrap: wrap;
+            gap: 2rem;
+        }
+
+        .footer-brand h3 {
+            font-family: 'Syne', sans-serif;
+            font-size: 1.5rem;
+            font-weight: 700;
+            margin-bottom: 0.25rem;
+        }
+
+        .footer-brand p {
+            font-size: 0.9rem;
+            color: var(--text-secondary);
+            margin: 0;
+        }
+
+        .footer-credit {
+            font-size: 0.85rem;
+            color: var(--text-secondary);
+            margin-top: 0.5rem;
+        }
+
+        .footer-links {
+            display: flex;
+            gap: 1.5rem;
+        }
+
+        .footer-links a {
+            color: var(--text-secondary);
+            text-decoration: none;
+            font-size: 0.9rem;
+            transition: color 0.3s ease;
+        }
+
+        .footer-links a:hover {
+            color: var(--text-primary);
+        }
+
+        .footer-copyright {
+            width: 100%;
+            text-align: center;
+            margin-top: 3rem;
+            padding-top: 2rem;
+            border-top: 1px solid rgba(255, 255, 255, 0.05);
+            font-size: 0.85rem;
+            color: var(--text-secondary);
+        }
+
+        /* ============================================
+           RESPONSIVE
+        ============================================ */
+        @media (max-width: 1024px) {
+            .problem,
+            .engineering {
                 grid-template-columns: 1fr;
                 gap: 3rem;
             }
-            .featured-image {
-                max-width: 100% !important;
+
+            .timeline-step {
+                grid-template-columns: 1fr;
+            }
+
+            .timeline-step:nth-child(even) .step-content,
+            .timeline-step:nth-child(even) .step-visual {
+                order: unset;
+            }
+
+            .kanban {
+                grid-template-columns: repeat(2, 1fr);
             }
         }
 
-        .email-form {
-            max-width: 480px;
-            margin: 4rem auto;
-            display: flex;
-            flex-direction: column;
-            gap: 1.5rem;
-            padding: 2.5rem;
-            background: var(--component-bg);
-            border-radius: var(--border-radius);
-            box-shadow: var(--box-shadow);
-            border: 1px solid rgba(255, 255, 255, 0.03);
-            backdrop-filter: blur(10px);
-            -webkit-backdrop-filter: blur(10px);
-            position: relative;
-            overflow: hidden;
-        }
+        @media (max-width: 768px) {
+            :root {
+                --section-padding: 80px;
+            }
 
-        .email-form::before {
-            content: "";
-            position: absolute;
-            top: 0;
-            left: 0;
-            width: 100%;
-            height: 100%;
-            background: linear-gradient(135deg, rgba(255,255,255,0.03) 0%, transparent 50%);
-            pointer-events: none;
-        }
+            .hero-stats {
+                flex-direction: column;
+                gap: 2rem;
+            }
 
-        .email-form input {
-            padding: 1.2rem 1.5rem;
-            border: 1px solid rgba(255, 255, 255, 0.05);
-            border-radius: 12px;
-            background: rgba(255, 255, 255, 0.02);
-            color: var(--primary-color);
-            font-size: 1rem;
-            transition: all 0.3s ease;
-            box-shadow: inset 0 2px 4px rgba(0, 0, 0, 0.1);
-            font-weight: 300;
-        }
+            .feature-grid,
+            .insight-cards,
+            .persona-grid {
+                grid-template-columns: 1fr;
+            }
 
-        .email-form input:focus {
-            outline: none;
-            border-color: rgba(255, 255, 255, 0.1);
-            background: rgba(255, 255, 255, 0.03);
-            box-shadow: 0 0 0 3px rgba(255, 255, 255, 0.05);
-        }
+            .kanban {
+                grid-template-columns: 1fr;
+            }
 
-        .email-form button {
-            padding: 1.2rem 2rem;
-            border: none;
-            border-radius: 12px;
-            background: linear-gradient(135deg, var(--accent-color) 0%, var(--accent-hover) 100%);
-            color: white;
-            font-size: 1rem;
-            font-weight: 500;
-            cursor: pointer;
-            transition: all 0.4s ease;
-            letter-spacing: 0.01em;
-            box-shadow: 0 8px 15px rgba(61, 130, 247, 0.25);
-            position: relative;
-            overflow: hidden;
-        }
+            .callout-box {
+                flex-direction: column;
+                text-align: center;
+            }
 
-        .email-form button::before {
-            content: "";
-            position: absolute;
-            top: 0;
-            left: -100%;
-            width: 100%;
-            height: 100%;
-            background: linear-gradient(90deg, transparent, rgba(255,255,255,0.2), transparent);
-            transition: left 0.7s ease;
-        }
+            .footer-content {
+                flex-direction: column;
+                text-align: center;
+            }
 
-        .email-form button:hover {
-            transform: translateY(-3px);
-            box-shadow: 0 12px 25px rgba(61, 130, 247, 0.35);
-        }
-        
-        .email-form button:hover::before {
-            left: 100%;
-        }
-        
-        .email-form button:active {
-            transform: translateY(-1px);
-        }
-
-        .form-status {
-            text-align: center;
-            min-height: 1.5rem;
-            font-size: 0.95rem;
-            font-weight: 400;
-        }
-
-        .form-status.success {
-            color: #4CAF50;
-        }
-
-        .form-status.error {
-            color: #f44336;
-        }
-        
-        /* Add a container for the entire content */
-        .page-container {
-            max-width: 900px;
-            margin: 0 auto;
-            padding: 0 1.5rem;
-        }
-        
-        /* Add more professional image styling */
-        img[src="assets/radialGraphExample.jpg"] {
-            border-radius: var(--border-radius);
-            box-shadow: var(--box-shadow);
-            transition: all 0.5s cubic-bezier(0.2, 0.8, 0.2, 1);
-            filter: drop-shadow(0 5px 15px rgba(0, 0, 0, 0.2));
-            max-width: 100%;
-            width: 800px;
-        }
-        
-        img[src="assets/radialGraphExample.jpg"]:hover {
-            transform: scale(1.02);
-            filter: drop-shadow(0 10px 25px rgba(0, 0, 0, 0.3));
-        }
-        
-        /* Make strong text stand out more */
-        strong {
-            color: #fff;
-            font-weight: 500;
-            letter-spacing: -0.01em;
-            position: relative;
-            display: inline-block;
-        }
-
-        strong::after {
-            content: "";
-            position: absolute;
-            bottom: -2px;
-            left: 0;
-            width: 100%;
-            height: 1px;
-            background: linear-gradient(90deg, transparent, rgba(255,255,255,0.3), transparent);
-            transform: scaleX(0);
-            transform-origin: left;
-            transition: transform 0.5s ease;
-        }
-
-        strong:hover::after {
-            transform: scaleX(1);
+            .cta-secondary-links {
+                flex-direction: column;
+                gap: 1rem;
+            }
         }
     </style>
 </head>
-
 <body>
-    <div class="page-container">
-        <div class="header parallax">
-            <h1>LE</h1>
+
+    <!-- ============================================
+         SECTION 1: HERO
+    ============================================ -->
+    <section class="hero">
+        <div class="hero-bg">
+            <!-- TODO: Add video background with slower.mp4, dimmed to 30% opacity -->
         </div>
-
-
-        <div class="image-with-caption">
-            <img src="assets/ye.png" alt="Radial Graph Example" class="featured-image">
-            <p class="caption">LE is a smartphone app for musicians to improve playing speed and vocabulary. It is very efficient.</p>
+        <h1>Instrument Learner<br>for YOU</h1>
+        <p class="hero-subtitle">
+            An adaptive practice engine that finds your weak spots,
+            serves them up in the perfect sequence, and gets out of your way.
+        </p>
+        <div class="hero-stats">
+            <div class="stat">
+                <div class="stat-number">200+</div>
+                <div class="stat-label">Voicings Tracked</div>
         </div>
-
-        <div class="section">
-            <h2>Explanation</h2>
-            <p>LE obsessively measures timings and builds a rich relational model of competencies.</p>
+            <div class="stat">
+                <div class="stat-number">0</div>
+                <div class="stat-label">AI features</div>
         </div>
-
-        <div class="image-with-caption">
-            <img src="assets/radialGraphExample.jpg" alt="Radial Graph Example">
-            <p class="caption">LE is completely flexible. It can be used to target any broad or narrow area of performance.</p>
-        </div>
-
-
-        <div class="section">
-            <h2>Example usage</h2>
-            <ul>
-                <li>Learn each note on the guitar fretboard</li>
-                <li>Improve retrieval to below 300ms for every major 7 chord inversion in L and R hands on the piano</li>
-                <li>Optimize speed of retrieval for the chords in a specific song</li>
-            </ul>
-        </div>
-
-        <div class="section">
-            <h2>User Interface</h2>
-            <p>The user interface culminates in a symbol recommendation algorithm.</p>
-        </div>
-
-     
-
-        <div class="section">
-            <div class="screenshots-grid">
-
-                <div class="image-with-caption">
-                    <video autoplay muted loop playsinline>
-                        <source src="assets/exaggerated.mp4" type="video/mp4">
-                        Your browser does not support the video tag.
-                    </video>
-                    <p class="caption">Stats update in real time.</p>
-                </div>
-
-
-                <div class="image-with-caption">
-                    <video autoplay muted loop playsinline>
-                        <source src="assets/triads.mp4" type="video/mp4">
-                        Your browser does not support the video tag.
-                    </video>
-                    <p class="caption">Users target broad or specific areas of vocabulary.</p>
-                </div>
-            </div>
-        </div>
-
-
-        <div class="section">
-            <h2>Stats</h2>
-            <p>Users can explore their progress in very fine grained terms.</p>
-        </div>
-
-
-        <div class="section">
-            <div class="screenshots-grid">
-                <div class="image-with-caption">
-                    <img src="assets/1.png" alt="visualization 1">
-                    <p class="caption">Configurable, real data.</p>
-                </div>
-
-                <div class="image-with-caption">
-                    <img src="assets/2.png" alt="visualization 1">
-                    <p class="caption">Motivating progression.</p>
-                </div>
-
-                <div class="image-with-caption">
-                    <img src="assets/charts.png" alt="visualization 1">
-                    <p class="caption">Rich, filterable historical data.</p>
-                </div>
-
-                <div class="image-with-caption">
-                    <img src="assets/completed.png" alt="visualization 1">
-                    <p class="caption">Radial charts reflect met goals.</p>
-                </div>
-            </div>
-        </div>
-
-
-
-        <div class="section">
-            <form id="access-form" class="email-form">
-                <input type="email" id="email" placeholder="Enter your email" required>
-                <button type="submit">Request Access</button>
-                <div id="form-status" class="form-status"></div>
-            </form>
-        </div>
-
-        <!-- <div class="section">
-            <h2>Open Source contributions</h2>
-            <p>LE is a mature, closed source project, but have made several open source contributions to the community:
-            <ul>
-                <li>A <a href="https://github.com/stirlingcarter/musical-symbols">musical symbol library</a></li>
-                <li>A <a href="https://github.com/stirlingcarter/musical-symbols">a low latency metronome library</a></li>
-                <li>A <a href="https://github.com/stirlingcarter/musical-symbols">a symbol to musical notation converter</a></li>
-            </ul>
-        </div> -->
+        <div class="stat">
+            <div class="stat-number">0</div>
+            <div class="stat-label">Hand holding</div>
     </div>
-    
+        </div>
+        <div class="hero-buttons">
+            <a href="#" class="btn btn-primary">Try the App</a>
+            <a href="#problem" class="btn btn-secondary">See How It Works ↓</a>
+        </div>
+    </section>
 
+    <!-- ============================================
+         SECTION 2: THE PROBLEM
+    ============================================ -->
+    <section id="problem" class="section">
+        <div class="container">
+            <div class="problem">
+                <div class="problem-content">
+                    <h2>Traditional Practice Kinda Sucks</h2>
+                    <p>...at min maxing for speed and vocabulary</p>
+                    <p><strong>Here's why:</strong></p>
+                    <ul class="problem-list">
+                        <li>Static exercises don't adapt and push YOUR weakness topology</li>
+                        <li>You waste 70% of practice time on things you've already mastered</li>
+                        <li>There's no feedback loop measuring the frontiers that best benefit from your attention</li>
+            </ul>
+                    <p>We think you should measure instead of hope and we went fucking autistic with the math</p>
+        </div>
+                <div class="problem-visual">
+                    <div class="heatmap-placeholder">
+                        <!-- TODO: Create heatmap visualization showing:
+                             - Top: "Traditional Method" - uniform grey blocks
+                             - Bottom: "LEVA Method" - heat-colored blocks
+                        -->
+                        <span class="placeholder-label">TODO: Heatmap Visualization</span>
+                        <p style="font-size: 0.9rem; color: var(--text-secondary);">"Where Your Practice Time Actually Goes"</p>
+        </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- ============================================
+         SECTION 3: THE INSIGHT
+    ============================================ -->
+    <section class="section section-dark">
+        <div class="container">
+            <div class="insight">
+                <p class="pull-quote">
+                    What if your practice routine could see
+                    the exact shape of your incompetence—
+                    and systematically fill it in?
+                </p>
+                <div class="insight-body">
+                    <p>Jazz piano proficiency isn't one skill—it's a 200-dimensional point cloud of chord voicings, each with its own latency metric across all twelve keys.</p>
+                    <p>You're fast at major 7ths. Slow at half-diminished. You nail drop-2 voicings but stumble on rootless shapes. Your brain has a complex, lumpy topology of what it knows.</p>
+                    <p>LEVA maps your competencies in real-time. It generates practice sequences targeting the boundary between "fast" and "not yet."</p>
+                    <p>This isn't imaginary - we'll show you the data</p>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- ============================================
+         SECTION 4: HOW IT WORKS
+    ============================================ -->
+    <section class="section">
+        <div class="container">
+            <div class="timeline">
+                <div class="timeline-header">
+                    <h2>Three Layers of Intelligence</h2>
+        </div>
+
+                <!-- Step 1 -->
+                <div class="timeline-step">
+                    <div class="step-content">
+                        <div class="step-label">01 — The Skill Tree</div>
+                        <h3>Progressive Mastery,<br>Not Chaos</h3>
+                        <p>Voicings are organized into domains—Major 7, Dominant 7, Altered Dominants, Quartal, etc. Advanced voicings stay hidden until you've got the fundamentals.</p>
+                        <p>Your working memory can't handle 200 symbols at once. The skill tree keeps you at the edge of your ability, not drowning.</p>
+                </div>
+                    <div class="step-visual">
+                        <!-- TODO: Interactive skill tree SVG diagram -->
+                        <div class="skill-tree-placeholder">
+Foundation Tier:
+├─ Major 7 (drop 2, drop 3, rootless)
+├─ Minor 7 (drop 2, drop 3, rootless)
+├─ Dominant 7 (drop 2, drop 3, rootless)
+└─ Half-diminished
+
+Intermediate Tier:
+├─ Dominant alterations (♭9, ♯9, ♭13)
+├─ Major 6/9 voicings
+├─ Sus voicings
+└─ Upper structure triads
+
+Advanced Tier:
+├─ Quartal voicings
+├─ Cluster voicings
+├─ Polychords
+└─ "Wrong note" substitutions
+
+Meta Tier:
+├─ ii-V-I progressions (all keys)
+├─ Turnarounds
+├─ Rhythm changes
+└─ Modal interchange
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Step 2 -->
+                <div class="timeline-step">
+                    <div class="step-content">
+                        <div class="step-label">02 — The Probability Engine</div>
+                        <h3>Weighted Randomness<br>That Feels Like Flow</h3>
+                        <p>Every time you play, LEVA updates its latency model. The next symbol isn't random—it's drawn from a weighted probability distribution:</p>
+                        <ul class="feature-list">
+                            <li>Latency weight — Slow voicings appear more</li>
+                            <li>Recency penalty — No mindless repetition</li>
+                            <li>Circle of fifths adjacency — Musical logic</li>
+                            <li>Register diversity — No hand position stagnation</li>
+                            <li>Success rate smoothing — Flow state</li>
+                            <li>Forgetting curve modeling — Old material resurfaces</li>
+                            <li>Key signature distribution — All keys get hit</li>
+                            <li>Transition pair frequency — (Coming: Real Book corpus)</li>
+                        </ul>
+                        <p>Feels random. Optimizes for your gaps.</p>
+                    </div>
+                    <div class="step-visual">
+                        <!-- TODO: Animated probability distribution bar chart -->
+                        <div class="heatmap-placeholder">
+                            <span class="placeholder-label">TODO: Probability Distribution Visualization</span>
+                            <p style="font-size: 0.85rem; color: var(--text-secondary); max-width: 280px;">
+                                Animated bar chart showing P(next voicing)<br>
+                                "High latency → high probability"<br>
+                                "Just played → probability killed"
+                            </p>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Step 3 -->
+                <div class="timeline-step">
+                    <div class="step-content">
+                        <div class="step-label">03 — The Human Element</div>
+                        <h3>You Judge Yourself.<br>Not an Algorithm.</h3>
+                        <p>LEVA asks YOU when you think you've played something well enough.</p>
+                        
+                        <p><em>Perfectionists welcome</em></p>
+
+                </div>
+                    <div class="step-visual">
+                        <!-- TODO: App screenshot -->
+                        <div class="heatmap-placeholder" style="min-height: 400px;">
+                            <span class="placeholder-label">TODO: App Screenshot</span>
+                            <p style="font-size: 0.85rem; color: var(--text-secondary); max-width: 280px;">
+                                Clean, minimal UI showing:<br>
+                                - Current voicing symbol (large, centered)<br>
+                                - Timer (running)<br>
+                                - "Next" button (bottom)
+                            </p>
+            </div>
+                        <p class="step-visual-caption">"No progress bars. No streaks. No bullshit."</p>
+        </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- ============================================
+         SECTION 5: FOR EDUCATORS
+    ============================================ -->
+    <section class="section section-dark">
+        <div class="container">
+            <div class="educators-intro">
+                <h2>Built on Learning Science</h2>
+                <p>Not a metronome with a fresh coat of paint. A practice methodology informed by spaced repetition research, motor learning theory, and jazz pedagogy.</p>
+        </div>
+            <div class="feature-grid">
+                <div class="feature-card">
+                    <div class="feature-icon">🎯</div>
+                    <h4>Adaptive Difficulty</h4>
+                    <p>Challenge stays at the edge of ability. Too easy = bored. Too hard = demoralized. The system finds the zone.</p>
+                </div>
+                <div class="feature-card">
+                    <div class="feature-icon">🧠</div>
+                    <h4>Spaced Repetition</h4>
+                    <p>Voicings resurface at optimal intervals. No wasted time over-practicing what you know. No forgetting what you learned last month.</p>
+                </div>
+                <div class="feature-card">
+                    <div class="feature-icon">📊</div>
+                    <h4>Data-Driven</h4>
+                    <p>Every session generates data about transfer learning. Do drop-2 voicings accelerate drop-3 learning? Collecting the receipts.</p>
+                </div>
+            </div>
+            <div class="callout-box">
+                <div class="callout-content">
+                    <h4>🎓 Coming: Educator Dashboard</h4>
+                    <p>Student progress tracking. Systematic weakness identification. Exportable heatmaps for lesson planning.</p>
+                </div>
+                <a href="#" class="btn btn-secondary">Waitlist →</a>
+            </div>
+        </div>
+    </section>
+
+    <!-- ============================================
+         SECTION 6: THE ENGINEERING
+    ============================================ -->
+    <section class="section">
+        <div class="container">
+            <div class="philosophy-content">
+                <h2>Not On Some Candy Crush Bullshit<br></h2>
+                <p>Read the whitepaper:</p>
+                <a href="#" class="btn btn-primary">Whitepaper</a>
+            </div>
+        </div>
+    </section>
+
+    <!-- ============================================
+         SECTION 7: THE PHILOSOPHY
+    ============================================ -->
+    <section class="section philosophy">
+        <div class="container">
+            <div class="philosophy-content">
+                <h2>Not On Some Candy Crush Bullshit<br></h2>
+                <div class="philosophy-body">
+                    <p>The app asks one question: "Was that good enough?"</p>
+                </div>
+                <div class="philosophy-quote">
+                    "The goal isn't to make practice fun.<br>The goal is to make you competent."
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- ============================================
+         SECTION 8: CURRENT STATE & ROADMAP
+    ============================================ -->
+    <section class="section">
+        <div class="container">
+            <div class="roadmap-header">
+                <h2>Status</h2>
+                <p>What works. What's coming. What's still just an idea.</p>
+            </div>
+            <div class="kanban">
+                <div class="kanban-column">
+                    <div class="kanban-title">✅ LIVE</div>
+                    <div class="kanban-item"><span>✅</span> Single voicing drill mode</div>
+                    <div class="kanban-item"><span>✅</span> 8-feature probability engine</div>
+                    <div class="kanban-item"><span>✅</span> Skill tree (4 tiers, 15+ domains)</div>
+                    <div class="kanban-item"><span>✅</span> Latency tracking per voicing</div>
+                    <div class="kanban-item"><span>✅</span> Local storage persistence</div>
+                    <div class="kanban-item"><span>✅</span> Mobile-responsive PWA</div>
+                    <div class="kanban-item"><span>✅</span> Inversions support</div>
+                    <div class="kanban-item"><span>✅</span> All twelve keys</div>
+                </div>
+                <div class="kanban-column">
+                    <div class="kanban-title">🚧 IN PROGRESS</div>
+                    <div class="kanban-item"><span>🚧</span> Real Book corpus parsing</div>
+                    <div class="kanban-item"><span>🚧</span> Progression pair extraction</div>
+                    <div class="kanban-item"><span>🚧</span> Transition latency tracking</div>
+                    <div class="kanban-item"><span>🚧</span> Voice leading analysis</div>
+                    <div class="kanban-item"><span>🚧</span> Register diversity enforcement</div>
+                    <div class="kanban-item"><span>🚧</span> Session analytics dashboard</div>
+                </div>
+                <div class="kanban-column">
+                    <div class="kanban-title">🎯 PLANNED</div>
+                    <div class="kanban-item"><span>🎯</span> Progression drill mode</div>
+                    <div class="kanban-item"><span>🎯</span> MIDI input support</div>
+                    <div class="kanban-item"><span>🎯</span> Educator dashboard</div>
+                    <div class="kanban-item"><span>🎯</span> Export practice data</div>
+                    <div class="kanban-item"><span>🎯</span> Custom voicing upload</div>
+                    <div class="kanban-item"><span>🎯</span> Tune-specific drills</div>
+                    <div class="kanban-item"><span>🎯</span> Collaborative features</div>
+                </div>
+                <div class="kanban-column">
+                    <div class="kanban-title">💭 RESEARCH</div>
+                    <div class="kanban-item"><span>💭</span> Transfer learning analysis</div>
+                    <div class="kanban-item"><span>💭</span> Optimal session duration</div>
+                    <div class="kanban-item"><span>💭</span> Voicing confusion patterns</div>
+                    <div class="kanban-item"><span>💭</span> Key signature bias</div>
+                    <div class="kanban-item"><span>💭</span> "Gateway voicing" discovery</div>
+                    <div class="kanban-item"><span>💭</span> Predictive mastery modeling</div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- ============================================
+         SECTION 9: THE DATA
+    ============================================ -->
+    <section class="section section-dark">
+        <div class="container">
+            <div class="data-intro">
+                <h2>What We're Learning</h2>
+                <p>Every session generates data about how people actually learn voicings. Some patterns emerging:</p>
+            </div>
+            <div class="insight-cards">
+                <div class="insight-card">
+                    <h4>80/20 Rule Holds</h4>
+                    <p>~20% of voicings account for 80% of practice time. Not the "hardest" ones—the ones with highest confusion adjacency (voicings that look/sound similar).</p>
+                    <p><em>→ Cluster confusable voicings together to force disambiguation.</em></p>
+                    <div class="chart-placeholder">TODO: Bar chart</div>
+                </div>
+                <div class="insight-card">
+                    <h4>Transfer Learning is Real</h4>
+                    <p>Drop-2 major 7 mastery accelerates drop-3 major 7 learning by ~30%. Voicing families share motor patterns.</p>
+                    <p><em>→ Unlocking sequence matters. Some voicings are "gateway skills."</em></p>
+                    <div class="chart-placeholder">TODO: Network graph</div>
+                </div>
+                <div class="insight-card">
+                    <h4>Session Sweet Spot</h4>
+                    <p>Latency improvement peaks around 25-30 minutes, then plateaus or regresses. Motor learning fatigue is real.</p>
+                    <p><em>→ Suggest breaks after 30 min. No marathon sessions.</em></p>
+                    <div class="chart-placeholder">TODO: Line graph</div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- ============================================
+         SECTION 10: WHO THIS IS FOR
+    ============================================ -->
+    <section class="section">
+        <div class="container">
+            <div class="personas-header">
+                <h2>Who Should Use This</h2>
+            </div>
+            <div class="persona-grid">
+                <div class="persona-card">
+                    <div class="persona-icon">🎹</div>
+                    <div class="persona-title">Intermediate Pianist</div>
+                    <p>3-5 years in. You know chord symbols. You can read lead sheets. But your hands don't have the voicing vocabulary to comp convincingly.</p>
+                    <p style="margin-top: 1rem;">Build mechanical freedom so you can focus on music, not hunting for shapes.</p>
+                </div>
+                <div class="persona-card">
+                    <div class="persona-icon">🎷</div>
+                    <div class="persona-title">Multi-Instrumentalist</div>
+                    <p>Sax player who wants basic piano comp skills. You understand harmony—you just need the motor patterns.</p>
+                    <p style="margin-top: 1rem;">Mechanics, not theory. Assumes you already hear what you want to play.</p>
+                </div>
+                <div class="persona-card">
+                    <div class="persona-icon">🎓</div>
+                    <div class="persona-title">Educator</div>
+                    <p>You teach jazz piano. Tired of students plateauing on the same voicings.</p>
+                    <p style="margin-top: 1rem;">Get data on exactly where weaknesses are. Focus lesson time on concepts instead of drill.</p>
+                </div>
+            </div>
+            <div class="not-for">
+                <h4>Not For:</h4>
+                <ul>
+                    <li>❌ Complete beginners (need to read chord symbols first)</li>
+                    <li>❌ Music theory instruction (mechanics only)</li>
+                    <li>❌ Passive learning (requires focus)</li>
+                </ul>
+            </div>
+        </div>
+    </section>
+
+    <!-- ============================================
+         SECTION 11: CALL TO ACTION
+    ============================================ -->
+    <section class="cta">
+        <div class="container">
+            <h1>Try It</h1>
+            <p class="cta-subtitle">No signup. No download. Browser-based.</p>
+            <div class="cta-buttons">
+                <a href="#" class="btn btn-primary">Launch App</a>
+                <a href="#" class="btn btn-secondary">GitHub</a>
+            </div>
+            <div class="cta-secondary-links">
+                <a href="#">Collaborate → Email</a>
+                <a href="#">Funding → Let's talk</a>
+                <a href="#">Educator? → Beta program</a>
+            </div>
+        </div>
+    </section>
+
+    <!-- ============================================
+         SECTION 12: FOOTER
+    ============================================ -->
+    <footer>
+        <div class="container">
+            <div class="footer-content">
+                <div class="footer-brand">
+                    <h3>LEVA</h3>
+                    <p>Adaptive Practice for Jazz Piano</p>
+                    <p class="footer-credit">Stirling Carter</p>
+                </div>
+                <div class="footer-links">
+                    <a href="#">GitHub</a>
+                    <a href="#">LinkedIn</a>
+                    <a href="#">Email</a>
+                    <a href="#">Twitter/X</a>
+                </div>
+            </div>
+            <div class="footer-copyright">
+                © 2025 Stirling Carter. Open source under MIT License.
+            </div>
+        </div>
+    </footer>
+
+    <!-- ============================================
+         SCRIPTS
+    ============================================ -->
     <script>
-        // Counter
-        let count = 0;
-        const counterElement = document.getElementById('counter');
-
-        function updateCounter() {
-            count++;
-            counterElement.textContent = count;
-            requestAnimationFrame(updateCounter);
-        }
-
-        requestAnimationFrame(updateCounter);
-
-        // Intersection Observer for fade-in sections
-        const observerOptions = {
-            threshold: 0.1
-        };
-
-        const observer = new IntersectionObserver((entries) => {
-            entries.forEach(entry => {
-                if (entry.isIntersecting) {
-                    entry.target.classList.add('visible');
+        // Smooth scroll for anchor links
+        document.querySelectorAll('a[href^="#"]').forEach(anchor => {
+            anchor.addEventListener('click', function (e) {
+                e.preventDefault();
+                const target = document.querySelector(this.getAttribute('href'));
+                if (target) {
+                    target.scrollIntoView({ behavior: 'smooth' });
                 }
             });
-        }, observerOptions);
-
-        document.querySelectorAll('.section').forEach(section => {
-            observer.observe(section);
         });
 
-        // Parallax effect
-        window.addEventListener('scroll', () => {
-            const parallax = document.querySelectorAll('.image-break img');
-            parallax.forEach(element => {
-                const scrolled = window.pageYOffset;
-                const rate = scrolled * 0.15;
-                element.style.transform = `translate3d(0px, ${rate}px, 0px) scale(1.1)`;
-            });
-        });
-
-        // Form handling
-        document.getElementById('access-form').addEventListener('submit', async (e) => {
-            e.preventDefault();
-            const email = document.getElementById('email').value;
-            const status = document.getElementById('form-status');
-            const button = e.target.querySelector('button');
-            
-            try {
-                button.disabled = true;
-                button.textContent = 'Sending...';
-                
-                const response = await fetch('https://formspree.io/f/mqaajole', {
-                    method: 'POST',
-                    headers: {
-                        'Content-Type': 'application/json'
-                    },
-                    body: JSON.stringify({ 
-                        email: email,
-                        message: `New access request from: ${email}`
-                    })
-                });
-
-                if (response.ok) {
-                    status.textContent = 'Thank you! We will be in touch soon.';
-                    status.className = 'form-status success';
-                    e.target.reset();
-                } else {
-                    throw new Error('Failed to send');
-                }
-            } catch (error) {
-                status.textContent = 'Something went wrong. Please try again.';
-                status.className = 'form-status error';
-            } finally {
-                button.disabled = false;
-                button.textContent = 'Request Access';
-            }
-        });
+        // TODO: Add AOS initialization for scroll animations
+        // TODO: Add intersection observer for fade-in sections
+        // TODO: Add Prism.js initialization for code highlighting
     </script>
-</body>
 
+</body>
 </html>

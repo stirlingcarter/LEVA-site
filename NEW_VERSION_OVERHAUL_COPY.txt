@@ -1,0 +1,871 @@
+# LEVA Website Content Specification
+
+## Design System
+```
+COLORS:
+- Primary: #2C5F2D (forest green - jazz club aesthetic)
+- Secondary: #FFD700 (gold - brass instrument accent)
+- Background: #0A0E0D (near-black)
+- Surface: #1A1F1E (dark card backgrounds)
+- Text Primary: #E8E6E3 (warm off-white)
+- Text Secondary: #9B9B9B (muted gray)
+- Accent: #FF6B35 (coral for CTAs)
+
+TYPOGRAPHY:
+- Headers: 'Space Grotesk', sans-serif (geometric, modern)
+- Body: 'Inter', sans-serif (readable, clean)
+- Code/Data: 'JetBrains Mono', monospace
+
+SPACING:
+- Section padding: 120px vertical
+- Container max-width: 1200px
+- Grid gap: 32px
+```
+
+---
+
+## SECTION 1: HERO
+
+### Layout
+Full viewport height, centered content, video/GIF background dimmed
+
+### Content
+
+**Headline (H1):**
+```
+Practice Jazz Piano Like
+Your Brain Actually Works
+```
+
+**Subheadline:**
+```
+An adaptive practice engine that finds your weak spots,
+serves them up in the perfect sequence, and gets out of your way.
+No AI listening. No gamification. Just intelligent drill.
+```
+
+**Stats Row (3 columns, centered):**
+```
+200+                    8                       0
+Voicings Tracked    Smart Features      BS Metrics
+```
+
+**CTA Buttons:**
+```
+[Try the App] (primary, links to app)
+[See How It Works ↓] (secondary, smooth scroll to next section)
+```
+
+**Background Element:**
+Screen recording of the app in action (looped, dimmed to 30% opacity, slow motion)
+
+---
+
+## SECTION 2: THE PROBLEM
+
+### Layout
+Two-column layout (60/40 split)
+
+### Content
+
+**Left Column:**
+
+**Header (H2):**
+```
+Traditional Practice Kinda Sucks
+```
+
+**Body Copy:**
+```
+You've spent hours drilling Hanon exercises. You've worked through
+method books. You've practiced ii-V-I's in all twelve keys.
+
+And yet, when you sit down to comp on a standard, your hands freeze
+on that ♭9♯11 voicing you swear you practiced last week.
+
+Here's why:
+
+• Static exercises don't adapt to YOUR weakness topology
+• You waste 70% of practice time on things you've already mastered
+• Method books can't know which voicings you confuse with each other
+• There's no feedback loop measuring what actually needs work
+
+Traditional practice is like lifting weights without tracking progress.
+You're just... hoping you're getting stronger.
+```
+
+**Right Column:**
+
+**Visual Element Description:**
+A heatmap visualization showing:
+- Top: "Traditional Method" - uniform grey blocks (everything practiced equally)
+- Bottom: "LEVA Method" - heat-colored blocks showing focused practice on weak areas
+- Label: "Where Your Practice Time Actually Goes"
+
+---
+
+## SECTION 3: THE INSIGHT
+
+### Layout
+Full-width, centered content with large pull quote treatment
+
+### Content
+
+**Pull Quote (Large Text):**
+```
+"What if your practice routine could see
+the exact shape of your incompetence—
+and systematically fill it in?"
+```
+
+**Body Copy (Centered, max-width 800px):**
+```
+Jazz piano proficiency isn't one skill—it's a 200-dimensional point cloud
+of chord voicings, each with its own latency metric across all twelve keys.
+
+You're fast at major 7ths. Slow at half-diminished. You nail drop-2 voicings
+but stumble on rootless shapes. Your brain has built a complex, lumpy
+topology of what it knows.
+
+LEVA maps that topology in real-time and generates practice sequences
+that target the exact boundary between "fast" and "not yet."
+
+It's not a metronome. It's not an AI judge. It's a probability engine
+that finds the optimal next flashcard based on what you just played
+and what you've been avoiding.
+```
+
+---
+
+## SECTION 4: HOW IT WORKS
+
+### Layout
+Three-step vertical timeline with alternating left/right content
+
+### Content
+
+**Header (H2, centered):**
+```
+Three Layers of Intelligence
+```
+
+---
+
+**Step 1 - Left Content:**
+
+**Step Label:**
+```
+01 — THE SKILL TREE
+```
+
+**Headline (H3):**
+```
+Progressive Mastery,
+Not Overwhelming Chaos
+```
+
+**Body:**
+```
+Voicings are organized into domains—Major 7, Dominant 7, Altered Dominants,
+Quartal Voicings, etc. You don't see advanced voicings until you've mastered
+the fundamentals.
+
+This isn't gatekeeping—it's learning science. Your working memory can't
+handle 200 symbols at once. The skill tree ensures you're always working
+at the edge of your ability, not drowning in complexity.
+```
+
+**Right Visual:**
+```
+[VISUAL: Your skill tree structure rendered as an interactive diagram]
+
+Foundation Tier:
+├─ Major 7 (drop 2, drop 3, rootless)
+├─ Minor 7 (drop 2, drop 3, rootless)  
+├─ Dominant 7 (drop 2, drop 3, rootless)
+└─ Half-diminished
+
+Intermediate Tier:
+├─ Dominant alterations (♭9, ♯9, ♭13)
+├─ Major 6/9 voicings
+├─ Sus voicings
+└─ Upper structure triads
+
+Advanced Tier:
+├─ Quartal voicings
+├─ Cluster voicings
+├─ Polychords
+└─ "Wrong note" substitutions
+
+Meta Tier:
+├─ ii-V-I progressions (all keys)
+├─ Turnarounds
+├─ Rhythm changes
+└─ Modal interchange
+```
+
+---
+
+**Step 2 - Right Content:**
+
+**Step Label:**
+```
+02 — THE PROBABILITY ENGINE
+```
+
+**Headline (H3):**
+```
+Weighted Randomness
+That Feels Like Flow
+```
+
+**Body:**
+```
+Every time you play a voicing, LEVA updates its internal model of your
+latency across all symbols. The next symbol isn't random—it's drawn from
+a probability distribution weighted by 8+ features:
+
+• Latency weight — Slow voicings appear more often
+• Recency penalty — Prevents mindless repetition
+• Circle of fifths adjacency — Introduces musical logic
+• Register diversity — Prevents hand position stagnation
+• Success rate smoothing — Keeps you in flow state
+• Forgetting curve modeling — Resurfaces old material
+• Key signature distribution — Ensures all-key coverage
+• Transition pair frequency — (Coming: Real Book corpus analysis)
+
+The result? A practice session that feels random but is secretly
+optimizing for your exact skill gaps.
+```
+
+**Left Visual:**
+```
+[VISUAL: Animated probability distribution]
+A bar chart showing P(next voicing) with:
+- Tallest bars: Recent mistakes
+- Medium bars: Unfamiliar territory
+- Short bars: Mastered voicings
+- Grayed out: Just played (recency penalty)
+
+Annotations pointing to features:
+"High latency → high probability"
+"Just played → probability killed"
+"Circle-of-fifths adjacent → slight boost"
+```
+
+---
+
+**Step 3 - Left Content:**
+
+**Step Label:**
+```
+03 — THE HUMAN ELEMENT
+```
+
+**Headline (H3):**
+```
+You Judge Yourself.
+Not an Algorithm.
+```
+
+**Body:**
+```
+There's no AI listening to your playing. No pitch detection. No "Good job!"
+animations. Just a timer and your own standards.
+
+Why?
+
+Because developing internal critique is PART of the skill. You need to
+know when you've played something cleanly vs. when you've faked it.
+
+When you tap "Next," you're making a judgment call: "That was good enough."
+This builds the same self-assessment muscle you use in real performance.
+
+Plus, it's technically simpler. No cloud processing. No microphone permissions.
+No algorithmic judgment that doesn't understand jazz anyway.
+
+This pisses people off at first. Then they realize it's the only honest way.
+```
+
+**Right Visual:**
+```
+[VISUAL: Screenshot of the app interface]
+Clean, minimal UI showing:
+- Current voicing symbol (large, centered)
+- Timer (running)
+- "Next" button (bottom)
+- Skill tree node indicator (subtle, top corner)
+
+Caption: "No progress bars. No streaks. No bullshit."
+```
+
+---
+
+## SECTION 5: FOR EDUCATORS
+
+### Layout
+Full-width section with dark background, three-column feature grid
+
+### Content
+
+**Header (H2, centered):**
+```
+Built on Learning Science,
+Not Guesswork
+```
+
+**Intro Paragraph (centered, max-width 800px):**
+```
+LEVA isn't a metronome with a fresh coat of paint. It's a practice methodology
+informed by spaced repetition research, motor learning theory, and thousands
+of hours of jazz pedagogy.
+```
+
+**Three-Column Grid:**
+
+**Column 1:**
+**Icon:** 🎯
+**Headline:** Adaptive Difficulty
+**Body:**
+```
+The system maintains flow state
+by keeping challenge at the edge
+of ability. Too easy and you're
+bored. Too hard and you're
+demoralized. LEVA finds the
+Goldilocks zone automatically.
+```
+
+**Column 2:**
+**Icon:** 🧠
+**Headline:** Spaced Repetition
+**Body:**
+```
+Forgetting curve modeling ensures
+voicings resurface at optimal
+intervals. You don't waste time
+over-practicing what you already
+know, and you don't forget what
+you learned last month.
+```
+
+**Column 3:**
+**Icon:** 📊
+**Headline:** Data-Driven Insights
+**Body:**
+```
+Every session generates data about
+transfer learning between voicings.
+Do drop-2 voicings accelerate
+drop-3 learning? LEVA is collecting
+the receipts.
+```
+
+**Call-Out Box (Full-width, bordered):**
+```
+🎓 COMING SOON: Educator Dashboard
+
+Track student progress across the skill tree. Identify systematic
+weaknesses. Export latency heatmaps for lesson planning.
+
+[Join Waitlist →]
+```
+
+---
+
+## SECTION 6: THE ENGINEERING
+
+### Layout
+Two-column layout (40/60 split), code-aesthetic design
+
+### Content
+
+**Left Column:**
+
+**Header (H2):**
+```
+The Engineering
+```
+
+**Subheader:**
+```
+Why this is interesting
+from a systems perspective
+```
+
+**Body:**
+```
+LEVA is a real-time optimization problem:
+
+Given a learner's current skill topology,
+what's the next symbol that maximizes
+expected global latency reduction?
+
+It's not a simple "drill your weakest thing"
+algorithm—that would be demotivating and
+ignore transfer learning effects.
+
+Instead, it's a weighted sampling problem
+with multiple competing objectives:
+- Minimize latency variance across domain
+- Prevent recency bias
+- Introduce musical structure
+- Maintain flow state
+- Model forgetting curves
+
+The solution is an 8-feature probability
+distribution that's recalculated after
+every single tap.
+```
+
+**Right Column:**
+
+**Code Block (Syntax Highlighted):**
+```javascript
+// Simplified probability calculation
+function calculateProbability(voicing, state) {
+  let p = BASE_PROBABILITY;
+  
+  // Latency weight (core feature)
+  p *= (state.latency[voicing] / state.avgLatency) ** 2;
+  
+  // Recency penalty
+  if (state.recentlyPlayed.includes(voicing)) {
+    p *= 0.01; // essentially kill it
+  }
+  
+  // Circle of fifths adjacency
+  if (isAdjacentInCOF(voicing, state.lastVoicing)) {
+    p *= 1.3;
+  }
+  
+  // Success rate smoothing (flow state)
+  if (state.sessionSuccessRate < 0.5) {
+    p *= (1 - state.latency[voicing] / MAX_LATENCY);
+  }
+  
+  // Forgetting curve
+  const daysSinceLastSeen = getDaysSince(voicing);
+  p *= Math.exp(daysSinceLastSeen / FORGETTING_HALFLIFE);
+  
+  return p;
+}
+```
+
+**Tech Stack List:**
+```
+Stack:
+• Vanilla JS (no framework bloat)
+• Local storage for persistence
+• No backend (privacy by architecture)
+• Progressive Web App (install on mobile)
+```
+
+**Roadmap Items:**
+```
+🚧 In Progress:
+• Real Book corpus analysis (3,000+ lead sheets)
+• Progression pair extraction via NLP
+• Voice leading distance calculations
+
+🎯 On Deck:
+• Transition latency tracking
+• Progression mode (ii-V-I chains)
+• Visual voice leading feedback
+• MIDI input support
+
+💭 Research Questions:
+• Transfer learning between voicing types
+• Optimal session duration before fatigue
+• Key signature bias in practice patterns
+```
+
+---
+
+## SECTION 7: THE PHILOSOPHY
+
+### Layout
+Full-width, light background section (contrast with dark site), centered content
+
+### Content
+
+**Header (H2, centered):**
+```
+No AI. No Gamification.
+No Lying to Yourself.
+```
+
+**Body (max-width 900px, centered):**
+```
+LEVA doesn't listen to your playing. It doesn't award points. It doesn't
+celebrate "streaks" or send you push notifications.
+
+This is deliberate.
+
+The app asks you one question: "Was that good enough?"
+
+And you have to answer honestly.
+
+This is anti-AI in the best way—it trusts you to develop discernment.
+It doesn't outsource judgment to an algorithm that can't hear dynamics,
+time feel, or voice leading quality anyway.
+
+It's also anti-gamification. No XP. No badges. No dopamine slot machine
+trying to keep you "engaged."
+
+Just you, a timer, and the question: "Can I play this voicing cleanly?"
+
+At first, people hate this. They want validation. They want the app to
+tell them they're doing great.
+
+But after a few sessions, they realize: this is building the internal
+standard you need as a musician. The ability to hear when you're faking it.
+
+That's the skill that actually matters.
+```
+
+**Pull Quote (Large, centered):**
+```
+"The goal isn't to make practice fun.
+The goal is to make you competent."
+```
+
+---
+
+## SECTION 8: CURRENT STATE & ROADMAP
+
+### Layout
+Kanban-style board (four columns)
+
+### Content
+
+**Header (H2, centered):**
+```
+Building in Public
+```
+
+**Intro (centered):**
+```
+Honesty over hype. Here's what works now, what's coming next,
+and what's still just an idea.
+```
+
+**Column 1: ✅ LIVE**
+```
+✅ Single voicing drill mode
+✅ 8-feature probability engine
+✅ Skill tree (4 tiers, 15+ domains)
+✅ Latency tracking per voicing
+✅ Local storage persistence
+✅ Mobile-responsive PWA
+✅ Inversions support
+✅ All twelve keys
+```
+
+**Column 2: 🚧 IN PROGRESS**
+```
+🚧 Real Book corpus parsing
+🚧 Progression pair extraction
+🚧 Transition latency tracking
+🚧 Voice leading analysis
+🚧 Register diversity enforcement
+🚧 Session analytics dashboard
+```
+
+**Column 3: 🎯 PLANNED**
+```
+🎯 Progression drill mode
+🎯 MIDI input support
+🎯 Educator dashboard
+🎯 Export practice data
+🎯 Custom voicing upload
+🎯 Tune-specific drills
+🎯 Collaborative features
+```
+
+**Column 4: 💭 RESEARCH**
+```
+💭 Transfer learning analysis
+💭 Optimal session duration
+💭 Voicing confusion patterns
+💭 Key signature bias
+💭 "Gateway voicing" discovery
+💭 Predictive mastery modeling
+```
+
+---
+
+## SECTION 9: THE DATA
+
+### Layout
+Full-width dark section, data visualization showcase
+
+### Content
+
+**Header (H2, centered):**
+```
+What We're Learning
+```
+
+**Intro:**
+```
+Every session generates data about how jazz pianists actually learn.
+Here's what's emerging:
+```
+
+**Three Insight Cards:**
+
+**Card 1:**
+**Headline:** The 80/20 Rule Holds
+**Body:**
+```
+Early data suggests ~20% of voicings account for 80% of practice time.
+These aren't necessarily the "hardest" voicings—they're the ones with
+the highest confusion adjacency (voicings that sound/look similar).
+
+Implication: The skill tree should cluster confusable voicings together
+to force disambiguation.
+```
+**Visual:** Bar chart showing practice time distribution
+
+**Card 2:**
+**Headline:** Transfer Learning is Real
+**Body:**
+```
+Mastering drop-2 major 7 voicings appears to accelerate drop-3 major 7
+learning by ~30%. This suggests voicing families share motor patterns.
+
+Implication: The skill tree unlocking sequence matters—some voicings
+are "gateway skills" that unlock entire regions of the space.
+```
+**Visual:** Network graph showing voicing relationships
+
+**Card 3:**
+**Headline:** Session Length Sweet Spot
+**Body:**
+```
+Preliminary data shows latency improvement peaks around 25-30 minutes,
+then plateaus or regresses. This aligns with research on motor learning
+fatigue thresholds.
+
+Implication: The app should suggest breaks after 30 minutes, not
+encourage marathon sessions.
+```
+**Visual:** Line graph showing latency improvement over session duration
+
+---
+
+## SECTION 10: WHO THIS IS FOR
+
+### Layout
+Three-column grid, persona-based
+
+### Content
+
+**Header (H2, centered):**
+```
+Who Should Use This
+```
+
+**Column 1:**
+**Icon:** 🎹
+**Persona:** The Intermediate Pianist
+**Description:**
+```
+You've been playing for 3-5 years.
+You know chord symbols. You can
+read lead sheets. But your hands
+don't have the voicing vocabulary
+to comp convincingly yet.
+
+LEVA gives you the mechanical
+freedom to focus on music instead
+of struggling to find shapes.
+```
+
+**Column 2:**
+**Icon:** 🎷
+**Persona:** The Multi-Instrumentalist
+**Description:**
+```
+You're a sax player who wants
+basic piano comp skills. You
+understand harmony deeply—you
+just need the motor patterns.
+
+LEVA focuses on mechanics, not
+music theory. It assumes you
+already hear what you want to
+play.
+```
+
+**Column 3:**
+**Icon:** 🎓
+**Persona:** The Educator
+**Description:**
+```
+You teach jazz piano and you're
+tired of students plateauing on
+the same voicings.
+
+LEVA gives you data on exactly
+where each student's weaknesses
+are, so you can focus lesson time
+on concepts instead of drill.
+```
+
+**Who This ISN'T For:**
+```
+❌ Complete beginners (you need to read chord symbols first)
+❌ People looking for music theory instruction (this is mechanics only)
+❌ Anyone wanting passive learning (this requires focus)
+```
+
+---
+
+## SECTION 11: CALL TO ACTION
+
+### Layout
+Centered, high-contrast section
+
+### Content
+
+**Header (H1, large):**
+```
+Try It Right Now
+```
+
+**Subheader:**
+```
+No signup. No download. Just start practicing.
+```
+
+**CTA Buttons (large, centered):**
+```
+[Launch App] (primary)
+[View on GitHub] (secondary)
+```
+
+**Secondary Options:**
+```
+Want to collaborate? → [Email me]
+Interested in funding this? → [Let's talk]
+Music educator? → [Join the beta program]
+```
+
+**Footer Links:**
+```
+About the Builder | Technical Deep-Dive | Research Notes | Press Kit
+```
+
+---
+
+## SECTION 12: FOOTER
+
+### Content
+
+**Left Column:**
+```
+LEVA
+Adaptive Practice Engine for Jazz Piano
+
+Built by Stirling Carter
+Software Engineer, Jazz Pianist, Systems Thinker
+```
+
+**Right Column:**
+```
+[GitHub] [LinkedIn] [Email] [Twitter/X]
+```
+
+**Copyright:**
+```
+© 2025 Stirling Carter. Open source under MIT License.
+```
+
+---
+
+# VISUAL DESIGN NOTES
+
+## Key Visual Elements to Create:
+
+1. **Skill Tree Diagram** (SVG, interactive)
+   - Nodes represent domains
+   - Lines show dependencies
+   - Color indicates completion/mastery level
+   - Hovering shows voicing count in that domain
+
+2. **Probability Distribution Visualization** (Animated)
+   - Bar chart with real-time updates
+   - Show how probabilities shift after each play
+   - Highlight which features are influencing each bar
+
+3. **Latency Heatmap** (2D grid)
+   - X-axis: Voicings
+   - Y-axis: Keys
+   - Color: Latency (red = slow, green = fast)
+   - Show "before/after" split view
+
+4. **Real Book Network Graph** (Coming soon visual)
+   - Nodes: Chord symbols
+   - Edges: Progression pairs
+   - Edge thickness: Frequency in corpus
+   - Interactive zoom/pan
+
+5. **App Screenshots** (Actual UI)
+   - Clean, minimal interface
+   - Show timer, symbol, "Next" button
+   - Dark mode aesthetic
+
+## Animation Opportunities:
+
+- Hero video: Screen recording of actual app usage
+- Probability bars: Animate redistribution after each symbol
+- Skill tree: Nodes "unlock" as you scroll
+- Data visualizations: Count-up animations for stats
+
+---
+
+# TECHNICAL IMPLEMENTATION NOTES
+
+## File Structure:
+```
+index.html          (single file, all sections)
+styles.css          (design system + section styles)
+script.js           (smooth scroll, animations)
+/assets
+  /images
+  /videos
+  skill-tree.svg
+  probability-viz.svg
+```
+
+## Key Libraries (Keep it minimal):
+- **Chart.js** for data visualizations
+- **AOS (Animate on Scroll)** for scroll-triggered animations
+- **Prism.js** for code syntax highlighting
+- That's it. No framework bloat.
+
+## Performance:
+- Lazy load images below fold
+- Inline critical CSS
+- Defer non-critical JS
+- Optimize video/GIF assets
+
+---
+
+# TONE CALIBRATION
+
+This copy is **bold but not bullshit**. It:
+- Makes strong claims backed by reasoning
+- Acknowledges current limitations (roadmap section)
+- Doesn't oversell what the app can't do
+- Shows the engineering sophistication
+- Appeals to educators AND engineers
+- Has personality without being gimmicky
+
+The voice is: **Confident builder sharing real work, not startup bro selling vaporware.**
+
+---
+
+Ready to build this? I can also create the actual HTML/CSS/JS if you want, or you can take this spec and run with it. Your call.
