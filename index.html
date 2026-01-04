@@ -1416,6 +1416,16 @@
             margin-bottom: 3rem;
         }
 
+        .cta-note {
+            font-size: 0.95rem;
+            color: var(--text-secondary);
+            text-align: center;
+            margin-top: 0.75rem;
+            margin-bottom: 1.75rem;
+            margin-left: auto;
+            margin-right: auto;
+        }
+
         .cta-buttons {
             display: flex;
             gap: 1rem;
@@ -1423,6 +1433,19 @@
             flex-wrap: wrap;
             margin-top: 0.75rem;
             margin-bottom: 3rem;
+        }
+
+        .store-badge {
+            display: inline-block;
+        }
+
+        .store-badge.store-badge--disabled {
+            pointer-events: none;
+        }
+
+        .store-badge.store-badge--disabled img {
+            filter: grayscale(1);
+            opacity: 0.5;
         }
 
         .cta-secondary-links {
@@ -1594,7 +1617,7 @@
     </div>
         </div>
         <div class="hero-buttons">
-            <a href="#" class="btn btn-primary">Use the Tool</a>
+            <a href="#download" class="btn btn-primary">Use the Tool</a>
             <a href="#insight" class="btn btn-secondary">Documentation ↓</a>
         </div>
     </section>
@@ -1724,7 +1747,7 @@
         <div class="container">
             <div class="problem">
                 <div class="problem-content">
-                    <h2>ShedLab will improve your ROI</h2>
+                    <h2>ShedLab improves your ROI</h2>
                     <p>ShedLab measures response latency across a huge symbol space and creates a competency topology, using the data to inform practice sequences.</p>
 
                     <ul class="problem-list">
@@ -1758,7 +1781,7 @@
                             <rect x="340" y="35" width="18" height="38" fill="#404040" rx="1"/>
                             <rect x="362" y="35" width="18" height="28" fill="#303030" rx="1"/>
                         </g>
-                        <text x="10" y="110" fill="#98968F" font-size="10" font-style="italic">Over-practice comfort zones, neglect weak spots</text>
+                        <text x="10" y="110" fill="#98968F" font-size="10" font-style="italic">Over-practiced areas, neglected spots</text>
 
                         <!-- LEVA Method -->
                         <text x="10" y="145" fill="#98968F" font-size="12" font-family="Instrument Sans">ShedLab Method</text>
@@ -1770,18 +1793,19 @@
                             <rect x="98" y="155" width="18" height="90" fill="#C4A962" rx="1"/>
                             <rect x="120" y="155" width="18" height="30" fill="#3D6F5F" rx="1"/>
                             <rect x="142" y="155" width="18" height="75" fill="#8B7355" rx="1"/>
-                            <rect x="164" y="155" width="18" height="20" fill="#2D5045" rx="1"/>
-                            <rect x="186" y="155" width="18" height="85" fill="#A38968" rx="1"/>
                             <rect x="208" y="155" width="18" height="40" fill="#3D6F5F" rx="1"/>
+                            <rect x="186" y="155" width="18" height="35" fill="#3D6F5F" rx="1"/>
                             <rect x="230" y="155" width="18" height="95" fill="#C4A962" rx="1"/>
                             <rect x="252" y="155" width="18" height="35" fill="#3D6F5F" rx="1"/>
+                            <rect x="164" y="155" width="18" height="20" fill="#2D5045" rx="1"/>
                             <rect x="274" y="155" width="18" height="70" fill="#8B7355" rx="1"/>
                             <rect x="296" y="155" width="18" height="25" fill="#2D5045" rx="1"/>
                             <rect x="318" y="155" width="18" height="60" fill="#A38968" rx="1"/>
-                            <rect x="340" y="155" width="18" height="45" fill="#3D6F5F" rx="1"/>
                             <rect x="362" y="155" width="18" height="80" fill="#8B7355" rx="1"/>
+                            <rect x="340" y="155" width="18" height="45" fill="#3D6F5F" rx="1"/>
+                            
                         </g>
-                        <text x="10" y="265" fill="#98968F" font-size="10" font-style="italic">Adaptive time allocation by latency</text>
+                        <text x="10" y="265" fill="#98968F" font-size="10" font-style="italic">Adaptive, prioritized attention</text>
                     </svg>
         </div>
                 </div>
@@ -2119,23 +2143,18 @@ Meta Tier:
     <!-- ============================================
          SECTION 8: CALL TO ACTION
     ============================================ -->
-    <section class="cta">
+    <section class="cta" id="download">
         <div class="container">
             <h1>Download</h1>
+            <p class="cta-note">... Coming soon ...</p>
             <div class="cta-art" aria-hidden="true"></div>
             <div class="cta-buttons">
-                <a href="#" style="display: inline-block;">
+                <a href="#" class="store-badge store-badge--disabled" aria-disabled="true" tabindex="-1">
                     <img src="assets/app-store-badge.svg" alt="Download on the App Store" style="height: 50px;">
                 </a>
-                <a href="#" style="display: inline-block;">
+                <a href="#" class="store-badge store-badge--disabled" aria-disabled="true" tabindex="-1">
                     <img src="assets/google-play-badge.svg" alt="Get it on Google Play" style="height: 50px;">
                 </a>
-            </div>
-            <div class="cta-secondary-links">
-                <a href="#">View Source Code</a>
-                <a href="#">Collaboration Inquiries → Email</a>
-                <a href="#">Research Funding → Contact</a>
-                <a href="#">Educator Beta → Apply</a>
             </div>
         </div>
     </section>
@@ -2151,10 +2170,10 @@ Meta Tier:
                     <p>Data driven symbolic music practice</p>
                 </div>
                 <div class="footer-links">
-                    <a href="#">GitHub</a>
-                    <a href="#">LinkedIn</a>
-                    <a href="#">Email</a>
-                    <a href="#">Twitter/X</a>
+                    <a href="#">Source Code</a>
+                    <a href="#">Collaboration</a>
+                    <a href="#">Funding</a>
+                    <a href="#">Educator Beta</a>
                 </div>
             </div>
             <div class="footer-copyright">
