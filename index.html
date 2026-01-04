@@ -928,6 +928,54 @@
             padding: 2rem 0;
         }
 
+        /* Optional: show a UI screenshot next to the "Tap" affordance */
+        .user-experience-visual.with-screenshot {
+            flex-direction: column;
+            gap: 1.25rem;
+            width: 100%;
+            align-items: center;
+            justify-content: center;
+        }
+
+        .screenshot-stage {
+            position: relative;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            width: 100%;
+        }
+
+        .user-experience-screenshot {
+            width: 100%;
+            max-width: 320px; /* 3.png is a huge iPad screenshot; keep it contained */
+            height: auto;
+            border-radius: 16px;
+            border: 1px solid rgba(224, 221, 217, 0.12);
+            box-shadow: 0 18px 60px rgba(0, 0, 0, 0.35);
+        }
+
+        .floating-finger {
+            position: absolute;
+            left: 50%;
+            top: 46%;
+            transform: translate(-50%, -50%);
+            font-size: 4rem;
+            line-height: 1;
+            animation: tap-pulse 2s ease-in-out infinite;
+            pointer-events: none;
+            filter: drop-shadow(0 12px 26px rgba(0, 0, 0, 0.45));
+        }
+
+        @media (max-width: 900px) {
+            .user-experience-screenshot {
+                max-width: 420px;
+            }
+
+            .floating-finger {
+                top: 44%;
+            }
+        }
+
         .tap-illustration {
             display: flex;
             flex-direction: column;
@@ -1175,10 +1223,42 @@
                but return to background by the bottom so the footer transition stays smooth. */
             background: linear-gradient(180deg, var(--background) 0%, var(--surface) 55%, var(--background) 100%);
             border-top: 1px solid rgba(224, 221, 217, 0.06);
+            position: relative;
+            overflow: hidden;
         }
 
         .cta h1 {
-            margin-bottom: 1rem;
+            margin-bottom: 0.5rem;
+        }
+
+        .cta .container {
+            position: relative;
+            z-index: 1;
+        }
+
+        .cta-art {
+            position: relative;
+            height: clamp(56px, 8vw, 120px);
+            margin: 0 auto 1.25rem;
+            pointer-events: none;
+        }
+
+        .cta-art::before {
+            content: '';
+            position: absolute;
+            left: 50%;
+            top: 58%;
+            transform: translate(-50%, -50%) rotate(-14deg);
+            width: min(2080px, 170vw);
+            height: clamp(420px, 30vw, 460px);
+            background-image: url('assets/3.png');
+            background-repeat: no-repeat;
+            background-position: center;
+            background-size: contain;
+            opacity: 0.15;
+            filter: blur(.4px) saturate(1.2) contrast(1.07) drop-shadow(0 34px 90px rgba(0, 0, 0, 0.6));
+            -webkit-mask-image: radial-gradient(closest-side, rgba(0,0,0,1) 0%, rgba(0,0,0,0) 76%);
+            mask-image: radial-gradient(closest-side, rgba(0,0,0,1) 0%, rgba(0,0,0,0) 76%);
         }
 
         .cta-subtitle {
@@ -1192,6 +1272,7 @@
             gap: 1rem;
             justify-content: center;
             flex-wrap: wrap;
+            margin-top: 0.75rem;
             margin-bottom: 3rem;
         }
 
@@ -1351,16 +1432,16 @@
         </p>
         <div class="hero-stats">
             <div class="stat">
-                <div class="stat-number">200+</div>
+                <div class="stat-number">1000+</div>
                 <div class="stat-label">Voicings Tracked</div>
         </div>
             <div class="stat">
-                <div class="stat-number">12K+</div>
-                <div class="stat-label">Practice Sessions</div>
+                <div class="stat-number">0</div>
+                <div class="stat-label">AI listening</div>
         </div>
         <div class="stat">
-            <div class="stat-number">7</div>
-            <div class="stat-label">Years Development</div>
+            <div class="stat-number">0</div>
+            <div class="stat-label">In-app purchases</div>
     </div>
         </div>
         <div class="hero-buttons">
@@ -1376,14 +1457,13 @@
         <div class="container">
             <div class="problem">
                 <div class="problem-content">
-                    <h2>Everybody hates practicing</h2>
-                    <p>Standard practice methods are inefficient</p>
+                    <h2>ShedLab improves your ROI</h2>
                     <ul class="problem-list">
-                        <li>Fixed curricula doesn't adapt well to individual weaknesses</li>
-                        <li>Most practice time is spent on already-mastered material</li>
-                        <li>No quantitative feedback loop for competency gaps</li>
+                        <li>Avoids practice time spent on already-mastered material</li>
+                        <li>Provides quantitative feedback around competency gaps</li>
+                        <li>Obsessively hammers out weaknesses, with receipts</li>
             </ul>
-                    <p>We measure response latency across a huge symbol space and create a comptency topology, scheduling accordingly.</p>
+                    <p>ShedLab measures response latency across a huge symbol space and creates a competency topology, using the data to inform practice sequences.</p>
         </div>
                 <div class="problem-visual">
                     <svg viewBox="0 0 400 300" style="width: 100%; height: auto;">
@@ -1452,7 +1532,8 @@
                 </p>
                 <div class="insight-body">
                     <p>Competency topology is irregular: fast at major 7ths, slow at half-diminished; comfortable with drop-2 voicings, uncertain on rootless shapes; etc.</p>
-                    <p>ShedLab records and maps this data in real-time and generates practice sequences that target the frontier between mastered and not-yet-mastered material, dynamically.</p>
+                    <p>ShedLab records and maps this data in real-time and generates practice sequences that target the frontier between mastered and not-yet-mastered material</p>
+                    <p>The sequences are generated by pathfinding for marks through real jazz literature.</p>
                 </div>
             </div>
         </div>
@@ -1558,14 +1639,12 @@ Meta Tier:
                         <h3>Weighted Selection</h3>
                         <p>Each practice attempt updates the latency model. Symbol selection is drawn from a weighted probability distribution</p>
                         <ul class="feature-list">
-                            <li>Latency weight — Higher latency increases probability</li>
-                            <li>Recency penalty — Recent items suppressed</li>
-                            <li>Circle of fifths adjacency — Musical coherence</li>
-                            <li>Register diversity — Prevents position stagnation</li>
-                            <li>Volatility smoothing — Maintains flow state</li>
-                            <li>Forgetting curve modeling — Scheduled reappearance</li>
-                            <li>Key signature distribution — Coverage across all keys</li>
-                            <li>Transition pair frequency — (Corpus analysis in progress)</li>
+                            <li>Latency — slowest voicings are most likely to appear next</li>
+                            <li>Realness — sequences are representated in jazz literature</li>
+                            <li>Recency — recent items can be suppressed or encouraged</li>
+                            <li>Volatility smoothing — manages attention</li>
+                            <li>Network effect — not all paths are made equal</li>
+                            <li>Circle of fifths adjacency, register diversity, and more</li>
                         </ul>
                     </div>
                     <div class="step-visual">
@@ -1736,13 +1815,12 @@ Meta Tier:
                         <div class="juxtaposition-label">Under the Hood</div>
                         <ul class="engine-list">
                             <li>Multi-factor probability weighting</li>
+                            <li>Jazz literature corpus analysis</li>
                             <li>Real-time latency modeling</li>
                             <li>Skill tree progression gates</li>
-                            <li>Volatility smoothing algorithms</li>
-                            <li>Key signature distribution</li>
-                            <li>Confusion pair clustering</li>
-                            <li>Transfer effect prediction</li>
-                            <li>Spaced repetition scheduling</li>
+                            <li>Success rate smoothing</li>
+                            <li>Spaced repetition management</li>
+                            <li>Other maths and stuff</li>
                         </ul>
                     </div>
                     
@@ -1752,11 +1830,12 @@ Meta Tier:
                     
                     <div class="juxtaposition-card user-side">
                         <div class="juxtaposition-label">Your Experience</div>
-                        <div class="user-experience-visual">
-                            <div class="tap-illustration">
-                                <span class="tap-icon">👆</span>
-                                <span class="tap-text">Tap</span>
+                        <div class="user-experience-visual with-screenshot">
+                            <div class="screenshot-stage">
+                                <img class="user-experience-screenshot" src="assets/pad.png" alt="ShedLab iPad interface screenshot">
+                                <div class="floating-finger" aria-hidden="true">👆</div>
                             </div>
+                            <div class="tap-text">Tap</div>
                         </div>
                     </div>
                 </div>
@@ -1840,6 +1919,7 @@ Meta Tier:
     <section class="cta">
         <div class="container">
             <h1>Download</h1>
+            <div class="cta-art" aria-hidden="true"></div>
             <div class="cta-buttons">
                 <a href="#" style="display: inline-block;">
                     <img src="assets/app-store-badge.svg" alt="Download on the App Store" style="height: 50px;">
