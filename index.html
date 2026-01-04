@@ -309,11 +309,160 @@
         .insight-body {
             max-width: 800px;
             margin: 0 auto;
+            text-align: left;
         }
 
         .insight-body p {
             margin-bottom: 1.5rem;
             font-size: 1.0625rem;
+        }
+
+        .insight-layout {
+            display: grid;
+            grid-template-columns: minmax(0, 1fr) minmax(0, 360px);
+            gap: 2.25rem;
+            align-items: center;
+        }
+
+        .insight-media {
+            display: flex;
+            justify-content: center;
+        }
+
+        .insight-video {
+            width: 100%;
+            max-width: 360px;
+            height: auto;
+            aspect-ratio: 1 / 1;
+            object-fit: cover;
+            border-radius: 16px;
+            border: 1px solid rgba(224, 221, 217, 0.12);
+            background: transparent;
+            box-shadow: 0 26px 90px rgba(0, 0, 0, 0.40);
+            display: block;
+        }
+
+        /* Insight: alternating icon flow (keeps reader scrolling) */
+        .insight-flow {
+            list-style: none;
+            margin: 0;
+            padding: 0;
+            display: flex;
+            flex-direction: column;
+            gap: 0.25rem;
+            position: relative;
+        }
+
+        .insight-flow::before {
+            content: '';
+            position: absolute;
+            left: 18px;
+            top: 18px;
+            bottom: 18px;
+            width: 1px;
+            transform: none;
+            background: linear-gradient(
+                180deg,
+                rgba(196, 169, 98, 0) 0%,
+                rgba(196, 169, 98, 0.22) 18%,
+                rgba(61, 111, 95, 0.20) 55%,
+                rgba(196, 169, 98, 0.18) 82%,
+                rgba(196, 169, 98, 0) 100%
+            );
+            opacity: 0.75;
+            pointer-events: none;
+        }
+
+        .insight-step {
+            display: flex;
+            align-items: center;
+            gap: 1rem;
+            padding: 0.95rem 0;
+            border-radius: 0;
+            background: transparent;
+            border: none;
+            box-shadow: none;
+            position: relative;
+            max-width: none;
+            width: 100%;
+        }
+
+        .insight-step:nth-child(odd) {
+            margin-right: 0;
+        }
+
+        .insight-step:nth-child(even) {
+            margin-left: 0;
+            flex-direction: row;
+        }
+
+        .insight-step:not(:last-child) {
+            border-bottom: 1px solid rgba(224, 221, 217, 0.10);
+        }
+
+        .insight-icon {
+            width: 36px;
+            height: 36px;
+            flex: 0 0 auto;
+            border-radius: 999px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            border: 1px solid rgba(196, 169, 98, 0.20);
+            background: rgba(196, 169, 98, 0.08);
+        }
+
+        .insight-step:nth-child(even) .insight-icon {
+            border-color: rgba(61, 111, 95, 0.24);
+            background: rgba(61, 111, 95, 0.10);
+        }
+
+        .insight-icon svg {
+            width: 18px;
+            height: 18px;
+            stroke: var(--secondary);
+            opacity: 0.95;
+        }
+
+        .insight-step:nth-child(even) .insight-icon svg {
+            stroke: var(--primary);
+        }
+
+        .insight-content p {
+            margin: 0;
+            font-size: 1.0625rem;
+            line-height: 1.65;
+            color: var(--text-secondary);
+        }
+
+        @media (max-width: 768px) {
+            .insight-layout {
+                grid-template-columns: 1fr;
+                gap: 1.75rem;
+            }
+
+            .insight-media {
+                order: -1;
+            }
+
+            .insight-video {
+                max-width: 520px;
+                aspect-ratio: 1 / 1;
+            }
+
+            .insight-flow::before {
+                display: none;
+            }
+
+            .insight-step {
+                max-width: none;
+                margin: 0;
+                padding: 0.95rem 0;
+            }
+
+            .insight-step:nth-child(even) {
+                flex-direction: row;
+            }
         }
 
         /* ============================================
@@ -1428,7 +1577,7 @@
         </div>
         <h1>ShedLab</h1>
         <p class="hero-subtitle">
-            Data driven symbolic music practice
+            Data driven music practice
         </p>
         <div class="hero-stats">
             <div class="stat">
@@ -1457,13 +1606,14 @@
         <div class="container">
             <div class="problem">
                 <div class="problem-content">
-                    <h2>ShedLab improves your ROI</h2>
+                    <h2>ShedLab will improve your ROI</h2>
+                    <p>ShedLab measures response latency across a huge symbol space and creates a competency topology, using the data to inform practice sequences.</p>
+
                     <ul class="problem-list">
                         <li>Avoids practice time spent on already-mastered material</li>
                         <li>Provides quantitative feedback around competency gaps</li>
                         <li>Obsessively hammers out weaknesses, with receipts</li>
             </ul>
-                    <p>ShedLab measures response latency across a huge symbol space and creates a competency topology, using the data to inform practice sequences.</p>
         </div>
                 <div class="problem-visual">
                     <svg viewBox="0 0 400 300" style="width: 100%; height: auto;">
@@ -1528,12 +1678,69 @@
         <div class="container">
             <div class="insight">
                 <p class="pull-quote">
-                    What if practice sequences targeted the real statistical boundary between fluent and not-yet-fluent?
+                    Is there a shortest path to proficiency?
                 </p>
                 <div class="insight-body">
-                    <p>Competency topology is irregular: fast at major 7ths, slow at half-diminished; comfortable with drop-2 voicings, uncertain on rootless shapes; etc.</p>
-                    <p>ShedLab records and maps this data in real-time and generates practice sequences that target the frontier between mastered and not-yet-mastered material</p>
-                    <p>The sequences are generated by pathfinding for marks through real jazz literature.</p>
+                    <div class="insight-layout">
+                        <ul class="insight-flow">
+                            <li class="insight-step">
+                                <div class="insight-icon" aria-hidden="true">
+                                    <svg viewBox="0 0 24 24" fill="none" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round">
+                                        <path d="M4 18V6" />
+                                        <path d="M4 18H20" />
+                                        <path d="M6.5 14.5L10 11.5L13.5 13L18 7.5" />
+                                        <circle cx="6.5" cy="14.5" r="1.2" />
+                                        <circle cx="10" cy="11.5" r="1.2" />
+                                        <circle cx="13.5" cy="13" r="1.2" />
+                                        <circle cx="18" cy="7.5" r="1.2" />
+                                    </svg>
+                                </div>
+                                <div class="insight-content">
+                                    <p>Competency topology is irregular: fast at major 7ths, slow at half-diminished; comfortable with drop-2 voicings, uncertain on rootless shapes; etc.</p>
+                                </div>
+                            </li>
+                            <li class="insight-step">
+                                <div class="insight-icon" aria-hidden="true">
+                                    <svg viewBox="0 0 24 24" fill="none" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round">
+                                        <path d="M12 21s7-4.5 7-11a7 7 0 1 0-14 0c0 6.5 7 11 7 11z" />
+                                        <circle cx="12" cy="10" r="2.2" />
+                                        <path d="M4.5 16.2c2.3-1.2 4.9-1.8 7.5-1.8s5.2.6 7.5 1.8" opacity="0.55"/>
+                                    </svg>
+                                </div>
+                                <div class="insight-content">
+                                    <p>ShedLab records and maps this data in real-time and generates practice sequences that target the frontier between mastered and not-yet-mastered material.</p>
+                                </div>
+                            </li>
+                            <li class="insight-step">
+                                <div class="insight-icon" aria-hidden="true">
+                                    <svg viewBox="0 0 24 24" fill="none" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round">
+                                        <path d="M7 7c4.6 0 6 4 10.5 4" />
+                                        <path d="M7 17c4.6 0 6-4 10.5-4" />
+                                        <path d="M17.5 13.5l2-2-2-2" />
+                                        <circle cx="7" cy="7" r="1.4" />
+                                        <circle cx="7" cy="17" r="1.4" />
+                                    </svg>
+                                </div>
+                                <div class="insight-content">
+                                    <p>The sequences are generated by pathfinding for marks through real jazz literature.</p>
+                                </div>
+                            </li>
+                        </ul>
+
+                        <div class="insight-media">
+                            <video
+                                class="insight-video"
+                                autoplay
+                                muted
+                                loop
+                                playsinline
+                                preload="metadata"
+                                aria-label="ShedLab demo video"
+                            >
+                                <source src="assets/gd.webm" type="video/webm" />
+                            </video>
+                        </div>
+                    </div>
                 </div>
             </div>
         </div>
@@ -1818,7 +2025,7 @@ Meta Tier:
                             <li>Skill tree progression gates</li>
                             <li>Success rate smoothing</li>
                             <li>Spaced repetition management</li>
-                            <li>Other maths and stuff</li>
+                            <li>Fancy maths and stuff</li>
                         </ul>
                     </div>
                     
