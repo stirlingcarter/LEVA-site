@@ -235,9 +235,17 @@
 
         .problem {
             display: grid;
-            grid-template-columns: 1.5fr 1fr;
+            /* Give the ROI graphic more room */
+            grid-template-columns: 1.15fr 1.35fr;
             gap: 4rem;
             align-items: center;
+        }
+
+        .problem-visual {
+            width: 100%;
+            max-width: 760px;
+            justify-self: start;
+            margin-left: -24px; /* pull the graphic slightly into the gutter */
         }
 
         .problem-list {
@@ -1607,14 +1615,6 @@
                 <div class="stat-number">1000+</div>
                 <div class="stat-label">Voicings Tracked</div>
         </div>
-            <div class="stat">
-                <div class="stat-number">0</div>
-                <div class="stat-label">AI listening</div>
-        </div>
-        <div class="stat">
-            <div class="stat-number">0</div>
-            <div class="stat-label">In-app purchases</div>
-    </div>
         </div>
         <div class="hero-buttons">
             <a href="#download" class="btn btn-primary">Use the Tool</a>
@@ -1704,7 +1704,7 @@
         <div class="container">
             <div class="juxtaposition-section">
                 <div class="juxtaposition-header">
-                    <h2>Powerful engine, effortless experience<br><span class="text-accent"></span></h2>
+                    <h2>Low overhead, high quality practice<br><span class="text-accent"></span></h2>
                 </div>
                 
                 <div class="juxtaposition-grid">
@@ -1757,55 +1757,9 @@
             </ul>
         </div>
                 <div class="problem-visual">
-                    <svg viewBox="0 0 400 300" style="width: 100%; height: auto;">
-                        <!-- Traditional Method -->
-                        <text x="10" y="25" fill="#98968F" font-size="12" font-family="Instrument Sans">Traditional Method</text>
-                        <g id="traditional">
-                            <!-- People over-practice comfortable material (moderately tall bars) -->
-                            <rect x="10" y="35" width="18" height="55" fill="#505050" rx="1"/>
-                            <rect x="32" y="35" width="18" height="58" fill="#505050" rx="1"/>
-                            <rect x="54" y="35" width="18" height="45" fill="#404040" rx="1"/>
-                            <rect x="76" y="35" width="18" height="60" fill="#505050" rx="1"/>
-                            <rect x="98" y="35" width="18" height="50" fill="#404040" rx="1"/>
-                            <rect x="120" y="35" width="18" height="62" fill="#505050" rx="1"/>
-                            <rect x="142" y="35" width="18" height="52" fill="#505050" rx="1"/>
-                            <rect x="164" y="35" width="18" height="48" fill="#404040" rx="1"/>
-                            <rect x="186" y="35" width="18" height="56" fill="#505050" rx="1"/>
-                            <rect x="208" y="35" width="18" height="65" fill="#505050" rx="1"/>
-                            <!-- Weak spots get under-practiced (short bars) -->
-                            <rect x="230" y="35" width="18" height="25" fill="#303030" rx="1"/>
-                            <rect x="252" y="35" width="18" height="35" fill="#404040" rx="1"/>
-                            <rect x="274" y="35" width="18" height="20" fill="#303030" rx="1"/>
-                            <rect x="296" y="35" width="18" height="30" fill="#303030" rx="1"/>
-                            <rect x="318" y="35" width="18" height="42" fill="#404040" rx="1"/>
-                            <rect x="340" y="35" width="18" height="38" fill="#404040" rx="1"/>
-                            <rect x="362" y="35" width="18" height="28" fill="#303030" rx="1"/>
-                        </g>
-                        <text x="10" y="110" fill="#98968F" font-size="10" font-style="italic">Over-practiced areas, neglected spots</text>
-
-                        <!-- LEVA Method -->
-                        <text x="10" y="145" fill="#98968F" font-size="12" font-family="Instrument Sans">ShedLab Method</text>
-                        <g id="leva">
-                            <rect x="10" y="155" width="18" height="80" fill="#8B7355" rx="1"/>
-                            <rect x="32" y="155" width="18" height="25" fill="#3D6F5F" rx="1"/>
-                            <rect x="54" y="155" width="18" height="65" fill="#A38968" rx="1"/>
-                            <rect x="76" y="155" width="18" height="15" fill="#2D5045" rx="1"/>
-                            <rect x="98" y="155" width="18" height="90" fill="#C4A962" rx="1"/>
-                            <rect x="120" y="155" width="18" height="30" fill="#3D6F5F" rx="1"/>
-                            <rect x="142" y="155" width="18" height="75" fill="#8B7355" rx="1"/>
-                            <rect x="208" y="155" width="18" height="40" fill="#3D6F5F" rx="1"/>
-                            <rect x="186" y="155" width="18" height="35" fill="#3D6F5F" rx="1"/>
-                            <rect x="230" y="155" width="18" height="95" fill="#C4A962" rx="1"/>
-                            <rect x="252" y="155" width="18" height="35" fill="#3D6F5F" rx="1"/>
-                            <rect x="164" y="155" width="18" height="20" fill="#2D5045" rx="1"/>
-                            <rect x="274" y="155" width="18" height="70" fill="#8B7355" rx="1"/>
-                            <rect x="296" y="155" width="18" height="25" fill="#2D5045" rx="1"/>
-                            <rect x="318" y="155" width="18" height="60" fill="#A38968" rx="1"/>
-                            <rect x="362" y="155" width="18" height="80" fill="#8B7355" rx="1"/>
-                            <rect x="340" y="155" width="18" height="45" fill="#3D6F5F" rx="1"/>
-                            
-                        </g>
-                        <text x="10" y="265" fill="#98968F" font-size="10" font-style="italic">Adaptive, prioritized attention</text>
+                    <svg id="roi-surface-3d" viewBox="-70 -140 560 360" style="width: 100%; height: auto;">
+                        <g id="roi-grid-shedlab" transform="translate(0, 28)"></g>
+                        <text x="125" y="182" fill="#98968F" font-size="10" font-style="italic">Adaptive, prioritized attention</text>
                     </svg>
         </div>
                 </div>
@@ -1829,6 +1783,8 @@
                         <div class="step-label">01 — Skill Tree</div>
                         <h3>Hierarchical Grouping</h3>
                         <p>Voicings are organized into domains—Major 7, Dominant 7, Altered Dominants, Quartal, etc.</p>
+                        <p>Use our jazz piano skill tree, or make your own for any discipline</p>
+
                 </div>
                     <div class="step-visual">
                         <!--
@@ -1860,7 +1816,7 @@ Meta Tier:
                         -->
                         <svg viewBox="0 0 380 340" style="width: 100%; height: auto;">
                             <!-- Foundation Tier -->
-                            <text x="10" y="20" fill="#C4A962" font-size="11" font-weight="500" font-family="Syne">Foundation Tier</text>
+                            <text x="10" y="20" fill="#C4A962" font-size="11" font-weight="500" font-family="Syne">Foundation</text>
                             <circle cx="50" cy="50" r="20" fill="#3D6F5F" opacity="0.3" stroke="#3D6F5F" stroke-width="2"/>
                             <text x="50" y="55" fill="#E0DDD9" font-size="9" text-anchor="middle" font-family="JetBrains Mono">Maj7</text>
                             <circle cx="110" cy="50" r="20" fill="#3D6F5F" opacity="0.3" stroke="#3D6F5F" stroke-width="2"/>
@@ -1871,7 +1827,7 @@ Meta Tier:
                             <text x="230" y="55" fill="#E0DDD9" font-size="9" text-anchor="middle" font-family="JetBrains Mono">ø7</text>
                             
                             <!-- Intermediate Tier -->
-                            <text x="10" y="115" fill="#C4A962" font-size="11" font-weight="500" font-family="Syne">Intermediate Tier</text>
+                            <text x="10" y="105" fill="#C4A962" font-size="11" font-weight="500" font-family="Syne">Intermediate</text>
                             <line x1="50" y1="70" x2="80" y2="120" stroke="#98968F" stroke-width="1" opacity="0.3"/>
                             <line x1="110" y1="70" x2="80" y2="120" stroke="#98968F" stroke-width="1" opacity="0.3"/>
                             <line x1="170" y1="70" x2="140" y2="120" stroke="#98968F" stroke-width="1" opacity="0.3"/>
@@ -1886,7 +1842,7 @@ Meta Tier:
                             <text x="260" y="140" fill="#98968F" font-size="8" text-anchor="middle" font-family="JetBrains Mono">UST</text>
                             
                             <!-- Advanced Tier -->
-                            <text x="10" y="200" fill="#C4A962" font-size="11" font-weight="500" font-family="Syne">Advanced Tier</text>
+                            <text x="10" y="190" fill="#C4A962" font-size="11" font-weight="500" font-family="Syne">Advanced</text>
                             <line x1="80" y1="153" x2="110" y2="205" stroke="#98968F" stroke-width="1" opacity="0.2"/>
                             <line x1="140" y1="153" x2="110" y2="205" stroke="#98968F" stroke-width="1" opacity="0.2"/>
                             <line x1="200" y1="153" x2="170" y2="205" stroke="#98968F" stroke-width="1" opacity="0.2"/>
@@ -1898,7 +1854,7 @@ Meta Tier:
                             <text x="230" y="224" fill="#6A7670" font-size="7" text-anchor="middle" font-family="JetBrains Mono">Poly</text>
                             
                             <!-- Meta Tier -->
-                            <text x="10" y="275" fill="#C4A962" font-size="11" font-weight="500" font-family="Syne">Meta Tier</text>
+                            <text x="10" y="265" fill="#C4A962" font-size="11" font-weight="500" font-family="Syne">Meta Stuff</text>
                             <rect x="40" y="285" width="280" height="40" fill="none" stroke="#98968F" stroke-width="1" stroke-dasharray="4,4" rx="2"/>
                             <text x="180" y="308" fill="#98968F" font-size="9" text-anchor="middle" font-family="JetBrains Mono">ii-V-I / Progressions / Context</text>
                         </svg>
@@ -1911,7 +1867,7 @@ Meta Tier:
                     <div class="step-content">
                         <div class="step-label">02 — Probability Engine</div>
                         <h3>Weighted Selection</h3>
-                        <p>Each practice attempt updates the latency model. Symbol selection is drawn from a weighted probability distribution</p>
+                        <p>Each practice attempt updates the model. Coherent sequences are generated using a weighted probability distribution.</p>
                         <ul class="feature-list">
                             <li>Latency — slowest voicings are most likely to appear next</li>
                             <li>Realness — sequences are representated in jazz literature</li>
@@ -1951,7 +1907,6 @@ Meta Tier:
                             <rect x="170" y="230" width="22" height="10" fill="#2D5045" opacity="0.3" rx="1"/>
                             <text x="181" y="260" fill="#98968F" font-size="7" text-anchor="middle" font-family="JetBrains Mono">FM7</text>
                             <line x1="170" y1="230" x2="192" y2="230" stroke="#E0DDD9" stroke-width="2" opacity="0.5"/>
-                            <text x="181" y="222" fill="#E0DDD9" font-size="8" text-anchor="middle">←recent</text>
                             
                             <rect x="200" y="200" width="22" height="40" fill="#3D6F5F" opacity="0.5" rx="1"/>
                             <text x="211" y="260" fill="#98968F" font-size="7" text-anchor="middle" font-family="JetBrains Mono">BbM7</text>
@@ -1969,7 +1924,7 @@ Meta Tier:
                             <text x="331" y="260" fill="#98968F" font-size="7" text-anchor="middle" font-family="JetBrains Mono">C#∅7</text>
                             
                             <!-- Legend -->
-                            <text x="10" y="285" fill="#98968F" font-size="9" font-style="italic">Higher bars = higher latency = more likely to appear next</text>
+                            <text x="10" y="285" fill="#98968F" font-size="9" font-style="italic">Factors ranging from latency, to canon appearances, influence sequence generation</text>
                         </svg>
                     </div>
                 </div>
@@ -2196,6 +2151,261 @@ Meta Tier:
                 }
             });
         });
+
+        // Make ROI bars look like 3D columns by converting SVG <rect> bars into 3 faces (front/top/side).
+        // This is intentionally "visual 3D" (not a true 3D chart lib) to keep the page lightweight.
+        (() => {
+            const SVG_NS = 'http://www.w3.org/2000/svg';
+
+            const clamp01 = (n) => Math.max(0, Math.min(1, n));
+
+            const hexToRgb = (hex) => {
+                if (typeof hex !== 'string') return null;
+                const m = hex.trim().match(/^#([0-9a-f]{6})$/i);
+                if (!m) return null;
+                const int = parseInt(m[1], 16);
+                return {
+                    r: (int >> 16) & 255,
+                    g: (int >> 8) & 255,
+                    b: int & 255,
+                };
+            };
+
+            const rgbToHex = ({ r, g, b }) => {
+                const toHex = (v) => v.toString(16).padStart(2, '0');
+                return `#${toHex(r)}${toHex(g)}${toHex(b)}`;
+            };
+
+            const mixHex = (a, b, t) => {
+                const ra = hexToRgb(a);
+                const rb = hexToRgb(b);
+                if (!ra || !rb) return a;
+                const tt = clamp01(t);
+                const mix = (ca, cb) => Math.round(ca + (cb - ca) * tt);
+                return rgbToHex({ r: mix(ra.r, rb.r), g: mix(ra.g, rb.g), b: mix(ra.b, rb.b) });
+            };
+
+            // amount in [-100, 100]; positive lightens, negative darkens
+            const shadeHex = (hex, amount) => {
+                const rgb = hexToRgb(hex);
+                if (!rgb) return hex; // fall back unchanged if not a 6-digit hex
+                const t = amount >= 0 ? 255 : 0;
+                const p = Math.abs(amount) / 100;
+                const mix = (c) => Math.round(c + (t - c) * p);
+                return rgbToHex({ r: mix(rgb.r), g: mix(rgb.g), b: mix(rgb.b) });
+            };
+
+            const createPolygon = (points, attrs = {}) => {
+                const el = document.createElementNS(SVG_NS, 'polygon');
+                el.setAttribute('points', points.map(([x, y]) => `${x},${y}`).join(' '));
+                Object.entries(attrs).forEach(([k, v]) => el.setAttribute(k, String(v)));
+                return el;
+            };
+
+            const createRect = (attrs = {}) => {
+                const el = document.createElementNS(SVG_NS, 'rect');
+                Object.entries(attrs).forEach(([k, v]) => el.setAttribute(k, String(v)));
+                return el;
+            };
+
+            const clearSvgChildren = (node) => {
+                while (node.firstChild) node.removeChild(node.firstChild);
+            };
+
+            const apply3DToBarGroup = (groupSelector, { dx = 3, dy = -3 } = {}) => {
+                const group = document.querySelector(groupSelector);
+                if (!group) return;
+
+                const rects = Array.from(group.querySelectorAll('rect'));
+                rects.forEach((rect) => {
+                    const x = parseFloat(rect.getAttribute('x') || '0');
+                    const y = parseFloat(rect.getAttribute('y') || '0');
+                    const w = parseFloat(rect.getAttribute('width') || '0');
+                    const h = parseFloat(rect.getAttribute('height') || '0');
+                    if (!Number.isFinite(x) || !Number.isFinite(y) || !Number.isFinite(w) || !Number.isFinite(h) || w <= 0 || h <= 0) {
+                        return;
+                    }
+
+                    const fill = rect.getAttribute('fill') || '#999999';
+                    const opacity = rect.getAttribute('opacity');
+                    const rx = rect.getAttribute('rx');
+
+                    const frontFill = fill;
+                    const topFill = shadeHex(fill, 22);
+                    const sideFill = shadeHex(fill, -22);
+
+                    const g = document.createElementNS(SVG_NS, 'g');
+                    g.setAttribute('class', 'bar-3d');
+
+                    // Right face
+                    const side = createPolygon(
+                        [
+                            [x + w, y],
+                            [x + w + dx, y + dy],
+                            [x + w + dx, y + h + dy],
+                            [x + w, y + h],
+                        ],
+                        { fill: sideFill }
+                    );
+
+                    // Top face
+                    const top = createPolygon(
+                        [
+                            [x, y],
+                            [x + dx, y + dy],
+                            [x + w + dx, y + dy],
+                            [x + w, y],
+                        ],
+                        { fill: topFill }
+                    );
+
+                    // Front face
+                    const front = createRect({
+                        x,
+                        y,
+                        width: w,
+                        height: h,
+                        fill: frontFill,
+                        ...(rx ? { rx } : {}),
+                    });
+
+                    if (opacity != null) {
+                        side.setAttribute('opacity', opacity);
+                        top.setAttribute('opacity', opacity);
+                        front.setAttribute('opacity', opacity);
+                    }
+
+                    // Draw order: side -> top -> front
+                    g.appendChild(side);
+                    g.appendChild(top);
+                    g.appendChild(front);
+
+                    rect.parentNode.insertBefore(g, rect);
+                    rect.remove();
+                });
+            };
+
+            // ROI section: 3D "surface" made of many columns in X/Y rising in Z (height), rendered in isometric projection.
+            const renderIsoColumnSurface = (groupSelector, {
+                cols = 12,
+                rows = 8,
+                tileW = 18,
+                tileH = 10,
+                maxHeight = 58,
+                originX = 220,
+                originY = 96,
+                lowColor = '#2D2D2D',
+                highColor = '#6A6A6A',
+                heightAt = (i, j) => 0,
+            } = {}) => {
+                const group = document.querySelector(groupSelector);
+                if (!group) return;
+
+                clearSvgChildren(group);
+
+                // Isometric basis vectors (like a baseball diamond):
+                // i axis goes down-right, j axis goes down-left.
+                const vx = { x: tileW / 2, y: tileH / 2 };
+                const vy = { x: -tileW / 2, y: tileH / 2 };
+
+                const ground = createPolygon(
+                    [
+                        [originX, originY],
+                        [originX + cols * vx.x, originY + cols * vx.y],
+                        [originX + cols * vx.x + rows * vy.x, originY + cols * vx.y + rows * vy.y],
+                        [originX + rows * vy.x, originY + rows * vy.y],
+                    ],
+                    { fill: '#000000', opacity: '0.08' }
+                );
+                group.appendChild(ground);
+
+                // Draw back-to-front for decent painter's-order layering.
+                const cells = [];
+                for (let j = 0; j < rows; j++) {
+                    for (let i = 0; i < cols; i++) {
+                        cells.push({ i, j, key: i + j });
+                    }
+                }
+                cells.sort((a, b) => a.key - b.key);
+
+                const hMin = 0;
+                const hMax = maxHeight;
+
+                cells.forEach(({ i, j }) => {
+                    const norm = clamp01(heightAt(i, j));
+                    const h = hMin + norm * (hMax - hMin);
+                    const base = {
+                        x: originX + i * vx.x + j * vy.x,
+                        y: originY + i * vx.y + j * vy.y,
+                    };
+
+                    // Base tile corners (ground plane)
+                    const A = [base.x, base.y];
+                    const B = [base.x + vx.x, base.y + vx.y];
+                    const C = [base.x + vx.x + vy.x, base.y + vx.y + vy.y];
+                    const D = [base.x + vy.x, base.y + vy.y];
+
+                    // Lifted corners (top face) - vertical is screen-up (negative y)
+                    const A2 = [A[0], A[1] - h];
+                    const B2 = [B[0], B[1] - h];
+                    const C2 = [C[0], C[1] - h];
+                    const D2 = [D[0], D[1] - h];
+
+                    const baseFill = mixHex(lowColor, highColor, norm);
+                    const topFill = shadeHex(baseFill, 18);
+                    const side1Fill = shadeHex(baseFill, -18); // vx face
+                    const side2Fill = shadeHex(baseFill, -28); // vy face
+
+                    const g = document.createElementNS(SVG_NS, 'g');
+                    g.setAttribute('class', 'iso-cell');
+
+                    // Two visible side faces (towards viewer)
+                    const faceVX = createPolygon([B, C, C2, B2], { fill: side1Fill, opacity: '0.92' });
+                    const faceVY = createPolygon([D, C, C2, D2], { fill: side2Fill, opacity: '0.92' });
+                    const top = createPolygon([A2, B2, C2, D2], { fill: topFill, opacity: '0.95' });
+
+                    g.appendChild(faceVY);
+                    g.appendChild(faceVX);
+                    g.appendChild(top);
+
+                    group.appendChild(g);
+                });
+
+                // Light outline for the surface to read better
+                const outline = createPolygon(
+                    [
+                        [originX, originY],
+                        [originX + cols * vx.x, originY + cols * vx.y],
+                        [originX + cols * vx.x + rows * vy.x, originY + cols * vx.y + rows * vy.y],
+                        [originX + rows * vy.x, originY + rows * vy.y],
+                    ],
+                    { fill: 'none', stroke: '#E0DDD9', 'stroke-width': '1', opacity: '0.12' }
+                );
+                group.appendChild(outline);
+            };
+
+            // ShedLab: smoother “rolling gradient” across the whole surface (more even attention)
+            const heightShedLab = (i, j) => {
+                const wave = 0.5 + 0.5 * Math.sin(i * 0.65 + j * 0.35);
+                const wave2 = 0.5 + 0.5 * Math.cos(j * 0.6 - i * 0.2);
+                const v = 0.25 + 0.45 * wave + 0.25 * wave2;
+                return clamp01(v);
+            };
+
+            renderIsoColumnSurface('#roi-grid-shedlab', {
+                cols: 12,
+                rows: 8,
+                tileW: 28,
+                tileH: 20,
+                maxHeight: 58,
+                // Position within the ROI panel (tweak these for alignment)
+                originX: 160,
+                originY: -90,
+                lowColor: '#2D5045',
+                highColor: '#C4A962',
+                heightAt: heightShedLab,
+            });
+        })();
 
         // TODO: Add AOS initialization for scroll animations
         // TODO: Add intersection observer for fade-in sections
