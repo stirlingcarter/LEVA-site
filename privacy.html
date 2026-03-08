@@ -1,0 +1,234 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Privacy Policy - ShedLab</title>
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Syne:wght@400;500;600;700;800&family=Instrument+Sans:wght@400;500;600&family=JetBrains+Mono:wght@400;500&display=swap" rel="stylesheet">
+    <style>
+        :root {
+            --primary: #3D6F5F;
+            --primary-glow: rgba(61, 111, 95, 0.15);
+            --secondary: #C4A962;
+            --background: #0F1411;
+            --surface: #1A1E1B;
+            --surface-elevated: #232724;
+            --text-primary: #E0DDD9;
+            --text-secondary: #98968F;
+            --accent: #8B7355;
+            --accent-hover: #A38968;
+            --border-radius: 4px;
+        }
+
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            font-family: 'Instrument Sans', -apple-system, BlinkMacSystemFont, sans-serif;
+            background-color: var(--background);
+            color: var(--text-primary);
+            line-height: 1.8;
+            letter-spacing: 0.002em;
+        }
+
+        .container {
+            max-width: 760px;
+            margin: 0 auto;
+            padding: 0 2rem;
+        }
+
+        h1 {
+            font-family: 'Syne', sans-serif;
+            font-size: clamp(2rem, 5vw, 3rem);
+            font-weight: 500;
+            line-height: 1.2;
+            letter-spacing: -0.01em;
+            margin-bottom: 0.5rem;
+        }
+
+        h2 {
+            font-family: 'Syne', sans-serif;
+            font-size: 1.375rem;
+            font-weight: 500;
+            line-height: 1.3;
+            margin-top: 2.5rem;
+            margin-bottom: 0.75rem;
+            letter-spacing: -0.01em;
+        }
+
+        p, li {
+            font-size: 1.0625rem;
+            color: var(--text-secondary);
+            line-height: 1.75;
+            margin-bottom: 1rem;
+        }
+
+        ul {
+            list-style: none;
+            margin-bottom: 1.25rem;
+        }
+
+        ul li {
+            padding-left: 1.5rem;
+            position: relative;
+            margin-bottom: 0.5rem;
+        }
+
+        ul li::before {
+            content: '·';
+            position: absolute;
+            left: 0.25rem;
+            color: var(--accent);
+            font-weight: bold;
+        }
+
+        a {
+            color: var(--secondary);
+            text-decoration: none;
+            transition: color 0.2s ease;
+        }
+
+        a:hover {
+            color: var(--accent-hover);
+        }
+
+        .header {
+            padding: 4rem 0 2rem;
+            border-bottom: 1px solid rgba(224, 221, 217, 0.08);
+            margin-bottom: 2rem;
+        }
+
+        .header .back-link {
+            display: inline-block;
+            font-size: 0.9375rem;
+            color: var(--text-secondary);
+            margin-bottom: 2rem;
+        }
+
+        .header .back-link:hover {
+            color: var(--text-primary);
+        }
+
+        .effective-date {
+            font-size: 0.9375rem;
+            color: var(--text-secondary);
+        }
+
+        .content {
+            padding-bottom: 4rem;
+        }
+
+        .highlight-box {
+            background: rgba(61, 111, 95, 0.08);
+            border: 1px solid rgba(61, 111, 95, 0.25);
+            border-radius: var(--border-radius);
+            padding: 1.5rem 2rem;
+            margin: 2rem 0;
+        }
+
+        .highlight-box p {
+            color: var(--text-primary);
+            margin: 0;
+        }
+
+        footer {
+            padding: 3rem 0;
+            border-top: 1px solid rgba(224, 221, 217, 0.08);
+        }
+
+        .footer-content {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            flex-wrap: wrap;
+            gap: 1rem;
+        }
+
+        .footer-brand {
+            font-family: 'Syne', sans-serif;
+            font-size: 1.125rem;
+            font-weight: 500;
+        }
+
+        .footer-copyright {
+            font-size: 0.8125rem;
+            color: var(--text-secondary);
+        }
+
+        @media (max-width: 768px) {
+            .footer-content {
+                flex-direction: column;
+                text-align: center;
+            }
+        }
+    </style>
+</head>
+<body>
+
+    <div class="container">
+        <div class="header">
+            <a href="https://stirlingcarter.github.io/shedlab/" class="back-link">← Back to ShedLab</a>
+            <h1>Privacy Policy</h1>
+            <p class="effective-date">Effective date: March 7, 2026</p>
+        </div>
+
+        <div class="content">
+            <div class="highlight-box">
+                <p>ShedLab does not collect, transmit, or share any personal data. All practice data is stored locally on your device and never leaves it.</p>
+            </div>
+
+            <h2>What ShedLab stores</h2>
+            <p>ShedLab records practice data to power its adaptive scheduling engine. This includes:</p>
+            <ul>
+                <li>Reaction times for each chord symbol, key, and voicing combination</li>
+                <li>Attempt counts and session history</li>
+                <li>Your custom exercises, scheduling presets, and app preferences</li>
+            </ul>
+            <p>All of this data lives on your device in local storage. None of it is sent to a server, cloud service, or third party.</p>
+
+            <h2>What ShedLab does not collect</h2>
+            <ul>
+                <li>No personal information (name, email, phone number, etc.)</li>
+                <li>No location data</li>
+                <li>No device identifiers or fingerprinting</li>
+                <li>No usage analytics or telemetry</li>
+                <li>No crash reports sent to external services</li>
+                <li>No advertising data of any kind</li>
+            </ul>
+
+            <h2>Network access</h2>
+            <p>ShedLab does not require an internet connection to function. The app makes no network requests during normal use. There are no accounts, no sign-in, and no sync features.</p>
+
+            <h2>Third-party services</h2>
+            <p>ShedLab does not integrate with any third-party analytics, advertising, or tracking services. No SDKs that collect user data are included in the app.</p>
+
+            <h2>Children's privacy</h2>
+            <p>ShedLab does not collect personal information from anyone, including children under 13. Because no data leaves the device, the app is compliant with COPPA requirements.</p>
+
+            <h2>Data deletion</h2>
+            <p>You can delete all of your practice data at any time from the Settings screen within the app. Since no data is stored externally, deleting the app also removes all associated data from your device.</p>
+
+            <h2>Changes to this policy</h2>
+            <p>If ShedLab ever introduces features that affect how data is handled, this policy will be updated and the effective date at the top will reflect the change. Since the app has no way to contact you, checking this page is the only way to see updates.</p>
+
+            <h2>Contact</h2>
+            <p>Questions about this policy can be directed to the developer at <a href="mailto:stirlingcarter@gmail.com">stirlingcarter@gmail.com</a>.</p>
+        </div>
+    </div>
+
+    <footer>
+        <div class="container">
+            <div class="footer-content">
+                <div class="footer-brand">ShedLab</div>
+                <div class="footer-copyright">© 2025 COLDDATA. All rights reserved.</div>
+            </div>
+        </div>
+    </footer>
+
+</body>
+</html>
